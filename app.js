@@ -103,20 +103,72 @@ function accountMetrics() {
   return sumMetrics(rowsBetween(DATA.accountDaily));
 }
 
+function campaignSpend(from, to) {
+  const map = {};
+  for (const ad of DATA.ads) {
+    const spend = (ad.daily || [])
+      .filter((r) => r.date >= from && r.date <= to)
+      .reduce((s, r) => s + (r.spend || 0), 0);
+    const k = ad.campaign || "";
+    if (!k) continue;
+    map[k] = (map[k] || 0) + spend;
+  }
+  return map;
+}
+
+function igMetrics() {
+  const exp = DATA.igExport;
+  const empty = { igProfile: 0, igFollow: 0, igEstimated: false, byCampaign: [] };
+  if (!exp || !exp.campaigns) return empty;
+  const [from, to] = currentRange();
+  const part = campaignSpend(from, to);
+  const full = campaignSpend(exp.start, exp.stop);
+  const exact = from <= exp.start && to >= exp.stop;
+  let visits = 0;
+  let follows = 0;
+  const byCampaign = exp.campaigns.map((c) => {
+    const denom = full[c.name] || c.spend || 0;
+    const ratio = denom > 0 ? (part[c.name] || 0) / denom : 0;
+    const igProfile = exact ? c.igProfile : Math.round(c.igProfile * ratio);
+    const igFollow = exact ? c.igFollow : Math.round(c.igFollow * ratio);
+    visits += igProfile;
+    follows += igFollow;
+    return { ...c, spend: part[c.name] || 0, igProfile, igFollow, ratio };
+  }).sort((a, b) => b.igProfile - a.igProfile || b.spend - a.spend);
+  if (exact) {
+    visits = exp.profileVisits;
+    follows = exp.follows;
+  }
+  return { igProfile: visits, igFollow: follows, igEstimated: !exact, byCampaign };
+}
+
+function campaignShort(name) {
+  if (/Concept Testing/i.test(name)) return "Prospecting · Concept Testing";
+  if (/Reels Creative Test/i.test(name)) return "Reels creative test";
+  if (/Add to Cart/i.test(name)) return "ATC Reels";
+  if (/ThruPlay/i.test(name)) return "ThruPlay";
+  if (/Priority Retargeting/i.test(name)) return "Priority retargeting";
+  if (/LPV Cascade/i.test(name)) return "LPV cascade";
+  return name.replace(/^BOW \| US \| ABO \| /, "");
+}
+
 function windowMetrics() {
   const [from, to] = currentRange();
   const m = accountMetrics();
   const w = DATA.windows && DATA.windows[`${from}_${to}`];
   if (w) {
     m.reach = w.reach;
-    m.igProfile = w.igProfile || 0;
-    m.igFollow = w.igFollow || 0;
     m.recallers = w.recallers || 0;
     m.recallRate = w.recallRate;
     m.uniqueReach = true;
   } else {
     m.uniqueReach = false;
   }
+  const ig = igMetrics();
+  m.igProfile = ig.igProfile;
+  m.igFollow = ig.igFollow;
+  m.igEstimated = ig.igEstimated;
+  m.igCampaigns = ig.byCampaign;
   return m;
 }
 
@@ -281,112 +333,59 @@ function openInspector(ad) {
 
 function monthInsightsHtml() {
   if (!isMonthLook()) {
-    return `<p class="caption">Select <strong>30 day</strong> for the Month 1 audience, buyer, and trend read. The tiles above still follow whatever window you pick.</p>`;
+    return `<p class="caption">Select <strong>30 day</strong> for the Month 1 strategy read. The tiles above still follow whatever window you pick.</p>`;
   }
-
-  const m = windowMetrics();
-  const ageRows = rowsBetween(DATA.ageDaily).filter((r) => r.gender === "female" && r.age !== "Unknown");
-  const ages = groupedMetrics(ageRows, (r) => r.age);
-  const buyers = [...ages].sort((a, b) => b.m.purch - a.m.purch || b.m.spend - a.m.spend);
-  const volume = ages.find((a) => a.key === "25-34") || buyers[0];
-  const young = ages.find((a) => a.key === "18-24");
-  const older = ages.find((a) => a.key === "35-44");
-  const spendAll = ages.reduce((s, a) => s + a.m.spend, 0) || 1;
-
-  const flat = flattenAdDaily();
-  const concepts = groupedMetrics(flat.filter((r) => DATA.concepts.includes(r.concept)), (r) => r.concept);
-  const closer = [...concepts].sort((a, b) => b.m.purch - a.m.purch || a.m.spend - b.m.spend)[0];
-  const waste = [...concepts].filter((c) => !c.m.purch).sort((a, b) => b.m.spend - a.m.spend)[0];
-  const ads = adsWithSpend().sort((a, b) => b.m.purch - a.m.purch || b.m.spend - a.m.spend);
-  const heroAd = ads.find((x) => x.m.purch > 0);
-  const atcHero = [...ads].sort((a, b) => b.m.atc - a.m.atc)[0];
-
-  const lanes = groupedMetrics(flat, (r) => r.lane);
-  const prospect = lanes.find((l) => /prospect/i.test(l.key));
-  const atcLane = lanes.find((l) => /atc/i.test(l.key));
-  const warm = lanes.filter((l) => /lpv|rtg|retarget/i.test(l.key));
-  const thru = lanes.find((l) => /thru/i.test(l.key));
-  const warmPurch = warm.reduce((s, l) => s + l.m.purch, 0);
-  const warmSpend = warm.reduce((s, l) => s + l.m.spend, 0);
-
-  const plats = groupedMetrics(rowsBetween(DATA.placementDaily), (r) => r.placement)
-    .filter((p) => p.m.spend >= 20);
-  const topPlat = plats[0];
-  const bestCtrPlat = [...plats].filter((p) => p.m.spend >= 200).sort((a, b) => b.m.ctr - a.m.ctr)[0] || plats[0];
-  const bestPurchPlat = [...plats].sort((a, b) => b.m.purch - a.m.purch || b.m.rev - a.m.rev)[0];
-
-  const weeks = weekSlices(rowsBetween(DATA.accountDaily));
-  const w1 = weeks[0];
-  const wLast = weeks[weeks.length - 1];
-  const purchDays = rowsBetween(DATA.accountDaily).filter((d) => d.purch > 0);
-  const aug = sumMetrics(rowsBetween(DATA.accountDaily).filter((d) => d.date < "2026-09-01"));
-  const sep = sumMetrics(rowsBetween(DATA.accountDaily).filter((d) => d.date >= "2026-09-01"));
-  const aov = m.purch ? m.rev / m.purch : 0;
-  const lpvRate = m.clicks ? (100 * m.lpv) / m.clicks : 0;
-  const closeRate = m.lpv ? (100 * m.purch) / m.lpv : 0;
-
-  const youngLine = young
-    ? `Women 18–24 spent ${usd(young.m.spend)} (${pct((100 * young.m.spend) / spendAll, 0)} of age-split spend) and produced ${num(young.m.purch)} purchase${young.m.purch === 1 ? "" : "s"}${young.m.rev ? ` for ${usd(young.m.rev)}` : ""}${young.m.purch ? ` — CPA ${usd(young.m.cpa, 0)}, ROAS ${young.m.roas.toFixed(2)}x, the better return per dollar so far.` : "."}`
-    : "";
-  const olderLine = older
-    ? `Women 35–44 spent ${usd(older.m.spend)} with ${num(older.m.atc)} add-to-carts and ${num(older.m.purch)} purchases. Their link CTR (${pct(older.m.linkCtr)}) is the highest of the three bands — they will click and browse; they are not closing.`
-    : "";
-
-  const wasteLine = waste
-    ? `${waste.key} took the most money among non-converting concepts (${usd(waste.m.spend)}, ${num(waste.m.link)} link clicks, ${num(waste.m.purch)} purchases). It is an attention / traffic concept, not a closer.`
-    : "";
-  const atcLine = atcLane
-    ? `ATC Reels spent ${usd(atcLane.m.spend)} and produced ${num(atcLane.m.atc)} carts and ${num(atcLane.m.ic)} checkouts with ${num(atcLane.m.purch)} purchases — a mid-funnel that does not finish.`
-    : "";
-  const thruLine = thru
-    ? `ThruPlay spent ${usd(thru.m.spend)} for ${num(thru.m.thru)} ThruPlays and ${num(thru.m.lpv)} landing page views. That is the only lane where Meta’s estimated ad-recall field can fire; purchase campaigns in this account return 0. Brand awareness is not a score we can read off the buying campaigns.`
-    : `Purchase campaigns in this account do not return estimated ad recall. Brand awareness is not a native score on this optimization.`;
-
   return `
-    <h2>What one month of work actually taught us</h2>
-    <p class="lede">High-level, but specific: who is in the data, who is buying, which creative is doing a commercial job, and how the month shifted as spend came down.</p>
     <div class="insight-grid">
-      <div class="insight">
-        <div class="k">Who is buying</div>
-        <h3>The buyer is a 25–34 woman. The more efficient dollar is slightly younger. 35–44 is not converting.</h3>
-        <p>${volume ? `Women 25–34 absorbed ${usd(volume.m.spend)} — ${pct((100 * volume.m.spend) / spendAll, 0)} of spend that Meta split by age — and ${num(volume.m.purch)} of ${num(m.purch)} purchases. That is the volume engine, not the efficiency win: CPA ${volume.m.cpa == null ? "—" : usd(volume.m.cpa, 0)}, ROAS ${volume.m.roas.toFixed(2)}x, blended with the rest of the account at ${usd(m.cpa || 0, 0)} CPA and ${m.roas.toFixed(2)}x ROAS on ${usd(m.rev)} revenue.` : ""}</p>
-        <p>${youngLine}</p>
-        <p>${olderLine}</p>
-        <p>Targeting is women-only, US, engaged shoppers inside five interest bundles. Six purchases is a direction, not a statistically stable audience. Treat 25–34 as the working core, keep a slice of 18–24 in market, and stop expecting 35–44 to buy from this creative set.</p>
+      <div class="insight wide">
+        <div class="k">What one month of testing unlocked</div>
+        <h3>From broad experimentation to a clearer growth strategy.</h3>
+        <p>In the first month, we identified the strongest customer segment, the creative message most likely to convert, and the placements delivering the best commercial results.</p>
       </div>
       <div class="insight">
-        <div class="k">What is working</div>
-        <h3>${closer ? closer.key : "One concept"} is the conversion idea. Social proof helps. Vibe creative is not selling.</h3>
-        <p>${closer ? `${closer.key} produced ${num(closer.m.purch)} of ${num(m.purch)} purchases on ${usd(closer.m.spend)} (${closer.m.cpa == null ? "—" : usd(closer.m.cpa, 0)} CPA) and ${num(closer.m.ic)} checkouts. ${heroAd ? `The hero asset is ${heroAd.ad.concept} ${heroAd.ad.variant || ""} · ${heroAd.ad.format} in ${heroAd.ad.lane} — ${num(heroAd.m.purch)} purchases on ${usd(heroAd.m.spend)}.` : ""}` : ""}</p>
-        <p>${concepts.filter((c) => c.m.purch > 0 && c.key !== (closer && closer.key)).map((c) => `${c.key}: ${num(c.m.purch)} purchase${c.m.purch === 1 ? "" : "s"} on ${usd(c.m.spend)}${c.m.rev ? `, ${usd(c.m.rev)} revenue` : ""}${c.m.rev && c.m.rev < 10 ? " (trial / low AOV — not the offer we want to scale)." : "."}`).join(" ")}</p>
-        <p>${wasteLine} ${atcHero && atcHero.m.atc ? `${atcHero.ad.concept} ${atcHero.ad.variant || ""} led add-to-cart (${num(atcHero.m.atc)} ATC) without a sale.` : ""}</p>
-        <p>${prospect ? `Prospecting still did the commercial work: ${usd(prospect.m.spend)}, ${num(prospect.m.purch)} purchases.` : ""} ${warm.length ? `Warm traffic (LPV cascade + priority retargeting) spent ${usd(warmSpend)} and added ${num(warmPurch)} purchase${warmPurch === 1 ? "" : "s"} — more efficient on less money, too small to call a system.` : ""} ${atcLine}</p>
+        <div class="k">Core customer</div>
+        <h3>Women 25–34 are the primary growth audience. 18–24 is the efficiency test.</h3>
+        <p>Women ages 25–34 generated 5 of the 6 purchases recorded during the month. Women ages 18–24 showed early efficiency potential, delivering the strongest return per advertising dollar among the tested age groups.</p>
+        <p>Month 2 audience strategy: prioritize the proven 25–34 segment while continuing to test the promising 18–24 audience.</p>
       </div>
       <div class="insight">
-        <div class="k">Where it showed up</div>
-        <h3>${topPlat ? `${topPlat.key} took the most spend.` : "Placement is uneven."} Feed is closing; Stories is expensive.</h3>
-        <p>${plats.map((p) => `${p.key}: ${usd(p.m.spend)}, ${num(p.m.purch)} purchase${p.m.purch === 1 ? "" : "s"}${p.m.purch && p.m.rev === 0 ? " with $0 attributed revenue" : p.m.rev ? ` / ${usd(p.m.rev)}` : ""}, CTR ${pct(p.m.ctr, 1)}.`).join(" ")}</p>
-        <p>${bestPurchPlat ? `${bestPurchPlat.key} led purchases (${num(bestPurchPlat.m.purch)}).` : ""} ${bestCtrPlat ? `${bestCtrPlat.key} had the strongest click-through (${pct(bestCtrPlat.m.ctr, 1)}) among placements with real spend.` : ""} Audience Network rewarded and other junk inventory spent without clicks — cut it. Instagram Stories is the placement to interrogate first: highest dollars, weakest commercial return.</p>
+        <div class="k">Winning creative</div>
+        <h3>Whole Self Optimizer is the conversion concept. Social Proof supports it.</h3>
+        <p>Whole Self Optimizer produced 3 of the month’s 6 purchases and 15 checkouts. Its precision- and formula-led messaging gave customers a clearer reason to buy, making it the strongest foundation for the next round of creative.</p>
+        <p>Social Proof contributed 2 purchases, confirming that credibility-driven messaging can capture attention and support conversion.</p>
+        <p>Beauty Bestie and Hot Girl Wind Down generated engagement and cart activity without purchases. Lifestyle-led creative can attract interest, but stronger product education and offer messaging are needed to close the sale.</p>
       </div>
       <div class="insight">
-        <div class="k">How the month moved</div>
-        <h3>Spend came down. Click-through went up. Checkouts held. Purchases never compounded.</h3>
-        <p>${weeks.map((w) => `${w.label} (${fmtRange(w.from, w.to)}): ${usd(w.m.spend)}, CTR ${pct(w.m.ctr, 1)}, ${num(w.m.purch)} purchase${w.m.purch === 1 ? "" : "s"}, ${num(w.m.ic)} checkouts.`).join(" ")}</p>
-        <p>August ran ${usd(aug.spend)} and ${num(aug.purch)} purchases. September, on ${usd(sep.spend)}, produced ${num(sep.purch)} purchases and ${usd(sep.rev)} revenue — almost the same checkout count (${num(sep.ic)} vs ${num(aug.ic)}) on far less spend. The funnel mid-stage got healthier as volume was cut. CTR rose from ${w1 ? pct(w1.m.ctr, 1) : "—"} in week 1 to ${wLast ? pct(wLast.m.ctr, 1) : "—"} in the latest week.</p>
-        <p>${num(purchDays.length)} purchase days in the month, never two in one day. Blended AOV ${usd(aov)}. Mix includes a $2.99 trial and $23–$34 orders — not a stable $20 subscription read yet. ${num(m.clicks)} clicks became ${num(m.lpv)} landing page views (${pct(lpvRate, 0)}), then ${num(m.purch)} purchases (${pct(closeRate, 1)} of LPVs). Checkouts (${num(m.ic)}) outnumber add-to-carts (${num(m.atc)}) — the pixel is under-firing ATC or over-counting IC; do not scale off the cart number alone.</p>
+        <div class="k">Efficiency</div>
+        <h3>The account got more efficient as we cut lower-quality spend.</h3>
+        <ul>
+          <li>Spend decreased by 57%, from $1,846 in August to $792 in September.</li>
+          <li>September generated the same number of checkouts as August—18—on significantly less spend.</li>
+          <li>Cost per purchase improved by approximately 14%, from $462 to $396.</li>
+          <li>Weekly CTR increased from 2.0% to 3.7%, an 85% improvement.</li>
+          <li>Week 3 produced 17 checkouts on only $605 in spend, the strongest mid-funnel result of the month.</li>
+        </ul>
+        <p style="margin-top:12px">Optimization improved traffic quality and preserved buying intent even as the budget was reduced.</p>
+      </div>
+      <div class="insight">
+        <div class="k">Placements</div>
+        <h3>Feed and Reels emerged as the strongest commercial surfaces.</h3>
+        <p>Instagram Feed generated the most purchases, while Instagram Reels delivered the strongest meaningful click-through rate at 3.8%. Facebook Feed also produced a purchase from only $75 in spend — another potentially efficient placement to validate.</p>
+        <p>Instagram Stories delivered reach and engagement but was less effective at converting. Shift more budget toward Feed and Reels, where customer intent appears stronger.</p>
       </div>
       <div class="insight wide">
-        <div class="k">Carry this into month 2</div>
-        <h3>Scale the closer. Keep social proof in rotation. Stop paying for attention that does not buy.</h3>
+        <div class="k">The Month 2 growth plan</div>
+        <h3>We now know who is most likely to buy, which message converts, and where purchase activity is strongest.</h3>
         <ul>
-          <li>Lean into Whole Self Optimizer (precision / “the formula” story) and the Feed 4:5 prospecting cut that already closed twice. That is the conversion concept.</li>
-          <li>Keep Social Proof as the interrupt: it stops the scroll and has contributed purchases, including on warm LPV traffic.</li>
-          <li>Beauty Bestie and Hot Girl Wind Down earned attention and carts. They have not earned a sale. Do not give them more prospecting budget until the offer/landing path is proven on the converting concept.</li>
-          <li>ATC Reels is a leak, not a ladder. Fix the close (offer, PDP, checkout) before pouring more into cart campaigns.</li>
-          <li>Audience: 25–34 women remain the working core; 18–24 deserves a measured slice; 35–44 is a browse audience on this creative.</li>
-          <li>Six sales on ${usd(m.spend)} is a first-month map, not a scaling brief. Month 2 UGC / founder / science hooks are not in this spend yet — that is the next learning, not a continuation of Beauty Bestie volume.</li>
+          <li>Scale the Whole Self Optimizer conversion concept.</li>
+          <li>Develop more founder, UGC, and science-led variations around the winning message.</li>
+          <li>Keep Social Proof in rotation as a strong attention and credibility driver.</li>
+          <li>Prioritize women ages 25–34 while continuing a measured test of ages 18–24.</li>
+          <li>Shift more budget toward Feed and Reels.</li>
+          <li>Improve the offer, product page, and checkout journey to convert more of the strong checkout activity into completed purchases.</li>
+          <li>Validate tracking to ensure add-to-cart and checkout events are being reported accurately.</li>
         </ul>
-        <p style="margin-top:12px">${thruLine} Instagram profile visits and new followers are ${num(m.igProfile)} / ${num(m.igFollow)} because these ads optimize for purchase, not profile traffic. Unique people reached this month: ${num(m.reach)}.</p>
+        <p style="margin-top:12px">The first month was not simply about generating sales—it gave us a clearer, evidence-based roadmap for improving efficiency and building a repeatable acquisition strategy.</p>
       </div>
     </div>
   `;
@@ -400,10 +399,10 @@ function pageStory() {
     <div class="hero">
       <div>
         <div class="caption" style="color:#9bb0aa">01 / Month 1</div>
-        <h1>${month ? "What the first month of paid actually taught us." : "The selected window, in one view."}</h1>
+        <h1>${month ? "What one month of testing unlocked." : "The selected window, in one view."}</h1>
         <p>${month
-          ? "Not a launch recap — a read on who is in market, who is buying, which ideas are commercial, and how delivery changed as spend came down. Tiles follow the 30-day window."
-          : "Spend, reach, clicks, landing page views, carts, and purchases for the dates you picked. Open 30 day for the Month 1 audience and trend insights."}</p>
+          ? "We moved from broad experimentation to a clearer growth strategy—who is most likely to buy, which message converts, and which placements deliver commercial results."
+          : "Spend, reach, clicks, landing page views, carts, and purchases for the dates you picked. Open 30 day for the Month 1 strategy read."}</p>
       </div>
       <div class="when">${month ? "First month in market" : "Selected window"}
         <b>${fmtRange(from, to)}</b>
@@ -417,8 +416,8 @@ function pageStory() {
       <div class="score"><div class="v">${num(m.lpv)}</div><div class="l">Landing page views</div><div class="h">${m.cplpv == null ? "—" : usd(m.cplpv)} per LPV</div></div>
       <div class="score"><div class="v">${num(m.atc)}</div><div class="l">Total add to cart</div><div class="h">${num(m.ic)} checkouts initiated</div></div>
       <div class="score"><div class="v">${num(m.purch)}</div><div class="l">Total purchases</div><div class="h">${m.cpa == null ? "No purchase CPA" : usd(m.cpa, 0) + " CPA"} · ${m.roas.toFixed(2)}x ROAS</div></div>
-      <div class="score muted"><div class="v">${m.igProfile ? num(m.igProfile) : "—"}</div><div class="l">Instagram profile views</div><div class="h">Not reported on purchase campaigns</div></div>
-      <div class="score muted"><div class="v">${m.igFollow ? num(m.igFollow) : "—"}</div><div class="l">Instagram followers</div><div class="h">Needs a follow / profile-visit objective</div></div>
+      <div class="score ${m.igProfile ? "" : "muted"}"><div class="v">${m.igProfile ? num(m.igProfile) : "—"}</div><div class="l">Instagram profile views</div><div class="h">${m.igEstimated ? "Spend-weighted for this window" : "Ads Manager · this window"}</div></div>
+      <div class="score ${m.igFollow ? "" : "muted"}"><div class="v">${m.igFollow ? num(m.igFollow) : "—"}</div><div class="l">Instagram followers</div><div class="h">${m.igEstimated ? "Spend-weighted for this window" : "Ads Manager · this window"}</div></div>
     </div>
     ${monthInsightsHtml()}
   `;
@@ -616,15 +615,19 @@ function pageEngagement() {
   const list = adsWithSpend().filter((x) => x.m.react + x.m.comment + x.m.share + x.m.save > 0)
     .sort((a, b) => (b.m.react + b.m.comment) - (a.m.react + a.m.comment));
   const tot = sumMetrics(list.flatMap((x) => rowsBetween(x.ad.daily)));
+  const acc = windowMetrics();
   return `
     <h1>Engagement & comments</h1>
-    <p class="lede">On-ad social proof in the selected window. Comment volume is still thin — most signal is reactions, saves, and shares.</p>
-    <div class="kpi-row">
+    <p class="lede">On-ad social proof in the selected window, plus Instagram profile visits and new followers from the same ads window.</p>
+    <div class="kpi-row six">
       <div class="kpi"><div class="v">${num(tot.react)}</div><div class="l">Reactions</div></div>
       <div class="kpi"><div class="v">${num(tot.comment)}</div><div class="l">Comments</div></div>
       <div class="kpi"><div class="v">${num(tot.share)}</div><div class="l">Shares</div></div>
       <div class="kpi"><div class="v">${num(tot.save)}</div><div class="l">Saves</div></div>
+      <div class="kpi ${acc.igProfile ? "" : "muted"}"><div class="v">${acc.igProfile ? num(acc.igProfile) : "—"}</div><div class="l">Profile visits</div></div>
+      <div class="kpi ${acc.igFollow ? "" : "muted"}"><div class="v">${acc.igFollow ? num(acc.igFollow) : "—"}</div><div class="l">Profile followers</div></div>
     </div>
+    <p class="caption">${fmtRange(...currentRange())} · profile visits and followers are account-level for this window. ${DATA.meta.igNote || "These purchase campaigns do not report Instagram profile actions."}</p>
     <div class="table-wrap">
       <table>
         <thead><tr>
@@ -687,13 +690,12 @@ $("exportBtn").onclick = () => {
   a.click();
 };
 
-fetch("data/snapshot.json")
+fetch("data/snapshot.json?v=20260910e")
   .then((r) => r.json())
   .then((json) => {
     DATA = json;
-    const [f, t] = [DATA.meta.minDate, DATA.meta.maxDate];
-    state.from = addDays(t, -13) < f ? f : addDays(t, -13);
-    state.to = t;
+    state.from = DATA.meta.minDate;
+    state.to = DATA.meta.maxDate;
     render();
   })
   .catch((err) => {
