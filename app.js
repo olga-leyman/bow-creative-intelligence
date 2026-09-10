@@ -5,7 +5,6 @@ const PAGES = [
   ["library", "04", "Creative library"],
   ["video", "05", "Video retention"],
   ["engagement", "06", "Engagement & comments"],
-  ["strategy", "07", "Next strategy"],
 ];
 
 const PRESETS = [
@@ -484,50 +483,7 @@ function pageEngagement() {
   `;
 }
 
-function pageStrategy() {
-  const m = accountMetrics();
-  const ads = adsWithSpend();
-  const concepts = DATA.concepts.map((name) => {
-    const items = ads.filter((x) => x.ad.concept === name);
-    return { name, m: sumMetrics(items.flatMap((x) => rowsBetween(x.ad.daily))) };
-  }).filter((c) => c.m.spend > 0).sort((a, b) => b.m.purch - a.m.purch || b.m.link - a.m.link);
-  const ages = ["18-24", "25-34", "35-44"].map((age) => ({
-    age,
-    m: sumMetrics(rowsBetween(DATA.ageDaily).filter((r) => r.age === age && r.gender === "female")),
-  }));
-  const places = {};
-  for (const r of rowsBetween(DATA.placementDaily)) {
-    places[r.placement] ??= [];
-    places[r.placement].push(r);
-  }
-  const placeArr = Object.entries(places).map(([name, rows]) => ({ name, m: sumMetrics(rows) })).sort((a, b) => b.m.spend - a.m.spend);
-  const winner = concepts.find((c) => c.m.purch > 0) || concepts[0];
-  const ageWin = [...ages].sort((a, b) => (b.m.roas - a.m.roas) || (b.m.link - a.m.link))[0];
-  const placeWin = placeArr.find((p) => p.m.purch > 0) || placeArr[0];
-  return `
-    <h1>Next strategy</h1>
-    <p class="lede">What this window says to run next — still from Meta only, ${fmtRange(...currentRange())}.</p>
-    <div class="signal-grid">
-      <div class="signal"><div class="k">Creative to scale</div><h3>${winner ? winner.name : "—"}</h3><p>${winner ? `${num(winner.m.purch)} purchases · ${usd(winner.m.spend)} spend · ${winner.m.roas.toFixed(2)}x ROAS` : ""}</p></div>
-      <div class="signal"><div class="k">Audience to lean into</div><h3>${ageWin.age}</h3><p>${usd(ageWin.m.spend)} · ${num(ageWin.m.link)} link clicks · ${ageWin.m.roas.toFixed(2)}x ROAS</p></div>
-      <div class="signal"><div class="k">Placement that sold</div><h3>${placeWin ? placeWin.name : "—"}</h3><p>${placeWin ? `${usd(placeWin.m.spend)} · ${num(placeWin.m.purch)} purchases` : ""}</p></div>
-    </div>
-    <h2>Carry forward</h2>
-    <div class="callout">Whole Self Optimizer is the conversion concept in-market. Social Proof and Beauty Bestie still win attention. Clean Girl is the only prospecting static with a purchase — treat it as a validation lane, not a volume engine. Month 2 UGC / science / founder hooks are not in this spend yet.</div>
-    <h2>Cuts</h2>
-    <p class="lede">IG Stories is taking spend without purchases in recent windows. ThruPlay Audience Network clicks are ~0. Hot Girl Wind Down prospecting CTR is the softest of the five bundles.</p>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Placement</th><th class="num">Spend</th><th class="num">Link CTR</th><th class="num">LPV</th><th class="num">Purchases</th></tr></thead>
-        <tbody>
-          ${placeArr.map((p) => `<tr><td>${p.name}</td><td class="num">${usd(p.m.spend)}</td><td class="num">${pct(p.m.linkCtr)}</td><td class="num">${num(p.m.lpv)}</td><td class="num">${num(p.m.purch)}</td></tr>`).join("")}
-        </tbody>
-      </table>
-    </div>
-  `;
-}
-
-const PAGER = { story: pageStory, diagnosis: pageDiagnosis, demographics: pageDemographics, library: pageLibrary, video: pageVideo, engagement: pageEngagement, strategy: pageStrategy };
+const PAGER = { story: pageStory, diagnosis: pageDiagnosis, demographics: pageDemographics, library: pageLibrary, video: pageVideo, engagement: pageEngagement };
 
 function bindPageClicks() {
   $("page").onclick = (e) => {
