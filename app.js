@@ -144,6 +144,8 @@ function igMetrics() {
 }
 
 function campaignShort(name) {
+  if (/UGC Cold/i.test(name)) return "Month 2 · UGC Cold";
+  if (/UGC Retargeting/i.test(name)) return "Month 2 · UGC Retargeting";
   if (/Concept Testing/i.test(name)) return "Prospecting · Concept Testing";
   if (/Reels Creative Test/i.test(name)) return "Reels creative test";
   if (/Add to Cart/i.test(name)) return "ATC Reels";
@@ -151,6 +153,11 @@ function campaignShort(name) {
   if (/Priority Retargeting/i.test(name)) return "Priority retargeting";
   if (/LPV Cascade/i.test(name)) return "LPV cascade";
   return name.replace(/^BOW \| US \| ABO \| /, "");
+}
+
+function ugcBundle(name) {
+  const items = adsWithSpend().filter((x) => x.ad.concept === name);
+  return { name, items, tot: sumMetrics(items.flatMap((x) => rowsBetween(x.ad.daily))) };
 }
 
 function windowMetrics() {
@@ -364,7 +371,7 @@ function monthInsightsHtml() {
     return `<p class="caption">Select <strong>30 day</strong> for the Month 1 strategy read. The tiles above still follow whatever window you pick.</p>`;
   }
   return `
-    <p class="caption">The tiles above follow the dates you picked. The written Month 1 read is the 17 Aug–11 Sep test. Google Ads is on page 07.</p>
+    <p class="caption">The tiles above follow the dates you picked. The written Month 1 read is the 17 Aug–11 Sep test. Month 2 UGC is on this page and in Audience diagnosis. Google Ads is on page 07.</p>
     <div class="insight-grid">
       <div class="insight wide">
         <div class="k">What one month of testing unlocked</div>
@@ -407,8 +414,8 @@ function monthInsightsHtml() {
         <h3>We now know who is most likely to buy, which message converts, and where purchase activity is strongest.</h3>
         <ul>
           <li>Scale the Whole Self Optimizer conversion concept.</li>
-          <li>Develop more founder, UGC, and science-led variations around the winning message.</li>
-          <li>Keep Social Proof in rotation as a strong attention and credibility driver.</li>
+          <li>Develop more founder, UGC, and science-led variations around the winning message. Month 2 UGC is live on that Whole Self hook.</li>
+          <li>Keep Social Proof in rotation as retargeting reinforcement. New social proof is UGC, not a new Social Proof concept family.</li>
           <li>Prioritize women ages 25–34 while continuing a measured test of ages 18–24.</li>
           <li>Shift more budget toward Feed and Reels.</li>
           <li>Improve the offer, product page, and checkout journey to convert more of the strong checkout activity into completed purchases.</li>
@@ -420,6 +427,30 @@ function monthInsightsHtml() {
   `;
 }
 
+function ugcInsightHtml() {
+  const cold = ugcBundle("UGC Cold");
+  const rtg = ugcBundle("UGC Retargeting");
+  if (!cold.tot.spend && !rtg.tot.spend) return "";
+  const tot = sumMetrics([
+    ...cold.items.flatMap((x) => rowsBetween(x.ad.daily)),
+    ...rtg.items.flatMap((x) => rowsBetween(x.ad.daily)),
+  ]);
+  const leader = [...cold.items, ...rtg.items].sort((a, b) => b.m.spend - a.m.spend)[0];
+  const buyer = [...cold.items, ...rtg.items].find((x) => x.m.purch > 0);
+  return `
+    <div class="insight wide" style="margin-top:16px">
+      <div class="k">Month 2 · UGC live since 11 Sep</div>
+      <h3>${buyer
+        ? `${buyer.ad.variant} on ${buyer.ad.lane} produced UGC’s first purchase.`
+        : "UGC is in market on the Whole Self hook."}</h3>
+      <p>Creator videos launched in cold prospecting and website-visitor retargeting, using <strong>Built for women in their 20s and 30s—finally.</strong> In this window: ${usd(tot.spend)} spend, ${num(tot.purch)} purchase${tot.purch === 1 ? "" : "s"}, ${num(tot.ic)} checkouts, ${pct(tot.linkCtr)} link CTR.</p>
+      <p>Cold spent ${usd(cold.tot.spend)}${cold.tot.purch ? ` and converted (${num(cold.tot.purch)} purchase, ${usd(cold.tot.rev)}).` : "."} Retargeting spent ${usd(rtg.tot.spend)} with ${num(rtg.tot.purch)} purchases — UGC is the new social-proof lane there, not a new Social Proof concept family.</p>
+      ${leader ? `<p>Heaviest delivery: <strong>${leader.ad.concept} ${leader.ad.variant}</strong> · ${usd(leader.m.spend)} · ${pct(leader.m.linkCtr)} link CTR. Open Audience diagnosis or the creative library for every creator cut.</p>` : ""}
+      <p class="caption">${DATA.meta.ugcNote || ""}</p>
+    </div>
+  `;
+}
+
 function pageStory() {
   const m = windowMetrics();
   const [from, to] = currentRange();
@@ -427,7 +458,7 @@ function pageStory() {
   return `
     <div class="hero">
       <div>
-        <div class="caption" style="color:#9bb0aa">01 / Month 1</div>
+        <div class="caption" style="color:#9bb0aa">01 / ${DATA.conceptMeta && DATA.conceptMeta["UGC Cold"] ? "Month 1 + Month 2" : "Month 1"}</div>
         <h1>${month ? "What one month of testing unlocked." : "The selected window, in one view."}</h1>
         <p>${month
           ? "We moved from broad experimentation to a clearer growth strategy—who is most likely to buy, which message converts, and which placements deliver commercial results."
@@ -449,6 +480,7 @@ function pageStory() {
       <div class="score ${m.igFollow ? "" : "muted"}"><div class="v">${m.igFollow ? num(m.igFollow) : "—"}</div><div class="l">Instagram followers</div><div class="h">${m.igEstimated ? "Spend-weighted for this window" : "Ads Manager · this window"}</div></div>
     </div>
     ${monthInsightsHtml()}
+    ${ugcInsightHtml()}
     ${DATA.google ? `<div class="insight wide" style="margin-top:16px">
       <div class="k">Google Ads · live since 11 Sep</div>
       <h3>Shopping produced Google’s first purchase. Open Google Ads in the nav for the snapshot.</h3>
@@ -467,7 +499,7 @@ function pageDiagnosis() {
 
   return `
     <h1>Audience diagnosis</h1>
-    <p class="lede">Five distinct women’s interest-and-behavior bundles, each paired with a matching creative concept and format mix.</p>
+    <p class="lede">Month 1 interest-and-behavior bundles, plus Month 2 UGC in cold prospecting and site-visitor retargeting. Click a bundle for asset evidence.</p>
     <p class="caption">${fmtRange(...currentRange())} · click a bundle to open asset evidence</p>
     ${groups.map((g) => {
       const conv = g.tot.purch > 0;
@@ -486,8 +518,8 @@ function pageDiagnosis() {
         </div>
         <div class="bundle-body">
           <div style="padding:12px 18px;font-size:13px;color:var(--muted)">
-            Interests: ${(g.meta.interests || []).join(", ") || "—"}
-            ${(g.meta.behaviors || []).length ? " · Behaviors: " + g.meta.behaviors.join(", ") : ""}
+            Interests: ${(g.meta.interests || []).join(", ") || (g.name.startsWith("UGC") ? "Creator UGC · Whole Self hook" : "—")}
+            ${(g.meta.behaviors || []).length ? " · " + (g.name.startsWith("UGC") ? "Audience: " : "Behaviors: ") + g.meta.behaviors.join(", ") : g.name === "UGC Cold" ? " · Broad women 18–45" : ""}
           </div>
           <div class="table-wrap">
             <table>
@@ -865,7 +897,7 @@ $("exportBtn").onclick = () => {
   a.click();
 };
 
-fetch("data/snapshot.json?v=20260916a")
+fetch("data/snapshot.json?v=20260916c")
   .then((r) => r.json())
   .then((json) => {
     DATA = json;

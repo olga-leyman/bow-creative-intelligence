@@ -177,6 +177,46 @@ def place_name(pub, pos):
     return f"{pub} {pos}".strip() or "unknown unknown"
 
 
+def classify_ad(name, campaign):
+    blob = f"{name} {campaign}"
+    headline = "Built for women in their 20s and 30s—finally."
+    if "UGC Cold" in blob:
+        parts = [p.strip() for p in (name or "").split("|")]
+        variant = parts[2] if len(parts) > 2 else "UGC"
+        slug = variant.lower().replace(" ", "")
+        return {
+            "concept": "UGC Cold",
+            "variant": variant,
+            "format": "Stories-Reels",
+            "lane": "UGC Cold",
+            "isVideo": True,
+            "headline": headline,
+            "thumb": f"data/creatives/ugc-{slug}.jpg" if slug in {"julia1","julia2","frankie1","frankie2","heiley1","heiley2","keena"} else "",
+        }
+    if "UGC RTG" in blob or "UGC Retargeting" in blob:
+        parts = [p.strip() for p in (name or "").split("|")]
+        variant = parts[2] if len(parts) > 2 else "UGC"
+        slug = variant.lower().replace(" ", "")
+        return {
+            "concept": "UGC Retargeting",
+            "variant": variant,
+            "format": "Stories-Reels",
+            "lane": "UGC Retargeting",
+            "isVideo": True,
+            "headline": headline,
+            "thumb": f"data/creatives/ugc-{slug}.jpg" if slug in {"julia1","julia2","frankie1","frankie2","heiley1","heiley2","keena"} else "",
+        }
+    return {
+        "concept": "Unmapped",
+        "variant": "",
+        "format": "Unknown",
+        "lane": "Unknown",
+        "isVideo": False,
+        "headline": "",
+        "thumb": "",
+    }
+
+
 def window_pack(row):
     return {
         "spend": round(float(row.get("spend") or 0), 2),
@@ -273,25 +313,26 @@ def main():
             updated += 1
         else:
             sample = next(x for x in ad_rows if str(x.get("ad_id")) == aid)
+            mapped = classify_ad(sample.get("ad_name") or "", sample.get("campaign_name") or "")
             snap["ads"].append({
                 "id": aid,
                 "name": sample.get("ad_name") or aid,
                 "status": "ACTIVE",
                 "created": "",
-                "concept": "Unmapped",
-                "variant": "",
-                "format": "Unknown",
-                "lane": "Unknown",
-                "isVideo": False,
-                "headline": "",
+                "concept": mapped["concept"],
+                "variant": mapped["variant"],
+                "format": mapped["format"],
+                "lane": mapped["lane"],
+                "isVideo": mapped["isVideo"],
+                "headline": mapped["headline"],
                 "body": "",
-                "thumb": "",
+                "thumb": mapped["thumb"],
                 "campaign": sample.get("campaign_name") or "",
                 "adset": "",
                 "targeting": {},
                 "daily": daily,
             })
-            print("  new ad", sample.get("ad_name"))
+            print("  new ad", sample.get("ad_name"), "→", mapped["concept"], mapped["variant"])
     print(" ", updated, "ads updated,", len(by_ad), "with delivery")
 
     print("unique reach windows…")
