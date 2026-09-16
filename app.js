@@ -5,6 +5,7 @@ const PAGES = [
   ["library", "04", "Creative library"],
   ["video", "05", "Video retention"],
   ["engagement", "06", "Engagement & comments"],
+  ["google", "07", "Google Ads"],
 ];
 
 const PRESETS = [
@@ -283,10 +284,37 @@ function renderPeriods() {
 
 function renderMeta() {
   const [from, to] = currentRange();
-  const presetLabel = PRESETS.find((p) => p[0] === state.preset)[1];
+  const g = DATA.google && DATA.google.meta;
+  const src = g ? "Meta + Google Ads" : "Meta Ads";
   $("metaLine").textContent =
-    `Data source · Meta Ads · ${fmtRange(from, to)} ${to === DATA.meta.maxDate && from !== to ? "(through now)" : ""} · Refreshed ${DATA.meta.pulled} · ${DATA.meta.timezone}`;
+    `Data source · ${src} · ${fmtRange(from, to)} ${to === DATA.meta.maxDate && from !== to ? "(through now)" : ""} · Refreshed ${DATA.meta.pulled} · ${DATA.meta.timezone}`;
   $("crumb").textContent = PAGES.find((p) => p[0] === state.page)[2];
+}
+
+function googleCampaigns() {
+  return (DATA.google && DATA.google.campaigns) || [];
+}
+
+function sumGoogle(rows) {
+  const z = { spend: 0, imps: 0, clicks: 0, purch: 0, rev: 0, allConv: 0 };
+  for (const r of rows || []) {
+    z.spend += r.spend || 0;
+    z.imps += r.imps || 0;
+    z.clicks += r.clicks || 0;
+    z.purch += r.purch || 0;
+    z.rev += r.rev || 0;
+    z.allConv += r.allConv || 0;
+  }
+  z.ctr = z.imps ? (100 * z.clicks) / z.imps : 0;
+  z.cpc = z.clicks ? z.spend / z.clicks : 0;
+  z.cpm = z.imps ? (z.spend / z.imps) * 1000 : 0;
+  z.roas = z.spend ? z.rev / z.spend : 0;
+  z.cpa = z.purch ? z.spend / z.purch : null;
+  return z;
+}
+
+function googleAccountMetrics() {
+  return sumGoogle(rowsBetween((DATA.google && DATA.google.accountDaily) || []));
 }
 
 function openInspector(ad) {
@@ -336,6 +364,7 @@ function monthInsightsHtml() {
     return `<p class="caption">Select <strong>30 day</strong> for the Month 1 strategy read. The tiles above still follow whatever window you pick.</p>`;
   }
   return `
+    <p class="caption">The tiles above follow the dates you picked. The written Month 1 read is the 17 Aug–11 Sep test. Google Ads is on page 07.</p>
     <div class="insight-grid">
       <div class="insight wide">
         <div class="k">What one month of testing unlocked</div>
@@ -420,6 +449,11 @@ function pageStory() {
       <div class="score ${m.igFollow ? "" : "muted"}"><div class="v">${m.igFollow ? num(m.igFollow) : "—"}</div><div class="l">Instagram followers</div><div class="h">${m.igEstimated ? "Spend-weighted for this window" : "Ads Manager · this window"}</div></div>
     </div>
     ${monthInsightsHtml()}
+    ${DATA.google ? `<div class="insight wide" style="margin-top:16px">
+      <div class="k">Google Ads · live since 11 Sep</div>
+      <h3>Shopping produced Google’s first purchase. Open Google Ads in the nav for the snapshot.</h3>
+      <p>${DATA.meta.googleNote || ""} Date chips on that page follow the same window as Meta.</p>
+    </div>` : ""}
   `;
 }
 
@@ -650,7 +684,148 @@ function pageEngagement() {
   `;
 }
 
-const PAGER = { story: pageStory, diagnosis: pageDiagnosis, demographics: pageDemographics, library: pageLibrary, video: pageVideo, engagement: pageEngagement };
+function pageGoogle() {
+  const g = DATA.google;
+  if (!g) return `<h1>Google Ads</h1><p class="lede">No Google snapshot in this file yet.</p>`;
+  const m = googleAccountMetrics();
+  const campaigns = googleCampaigns().map((c) => ({ c, tot: sumGoogle(rowsBetween(c.daily || [])) }))
+    .sort((a, b) => b.tot.spend - a.tot.spend);
+  const mixMap = {};
+  for (const { c } of campaigns) {
+    for (const row of c.conversions || []) {
+      const k = row.name;
+      mixMap[k] ||= { name: k, purch: 0, rev: 0, all: 0 };
+      mixMap[k].purch += row.purch || 0;
+      mixMap[k].rev += row.rev || 0;
+      mixMap[k].all += row.all || 0;
+    }
+  }
+  const mix = Object.values(mixMap).sort((a, b) => b.all - a.all);
+  const products = (g.products || []).filter((p) => p.imps || p.spend).sort((a, b) => b.spend - a.spend);
+  const terms = (g.searchTerms || []).slice(0, 12);
+  const shop = campaigns.find((x) => /Shopping/i.test(x.c.type));
+  const pmax = campaigns.find((x) => /Performance Max/i.test(x.c.type));
+  const display = campaigns.find((x) => /Display/i.test(x.c.type));
+  const maxSpend = Math.max(...campaigns.map((x) => x.tot.spend), 1);
+  return `
+    <div class="hero">
+      <div>
+        <div class="caption" style="color:#9bb0aa">07 / Google Ads</div>
+        <h1>Shopping converted. PMax is still traffic.</h1>
+        <p>Google went live 11 Sep. One purchase came from Shopping on the Women’s Multivitamin. Performance Max is driving clicks without a close. Display retargeting has not delivered yet.</p>
+      </div>
+      <div class="when">Google launch window
+        <b>${fmtRange(g.meta.minDate, g.meta.maxDate)}</b>
+        ${g.meta.note}
+      </div>
+    </div>
+    <div class="score-grid">
+      <div class="score"><div class="v">${usd(m.spend, 0)}</div><div class="l">Google spend</div><div class="h">Selected dates · customer ${g.meta.customerId}</div></div>
+      <div class="score"><div class="v">${num(m.imps)}</div><div class="l">Impressions</div><div class="h">${usd(m.cpm)} CPM</div></div>
+      <div class="score"><div class="v">${num(m.clicks)}</div><div class="l">Clicks</div><div class="h">${pct(m.ctr)} CTR · ${usd(m.cpc)} CPC</div></div>
+      <div class="score"><div class="v">${num(m.purch)}</div><div class="l">Purchases</div><div class="h">${m.cpa == null ? "No purchase CPA" : usd(m.cpa, 0) + " CPA"} · ${m.roas.toFixed(2)}x ROAS</div></div>
+    </div>
+    <div class="insight-grid">
+      <div class="insight">
+        <div class="k">What converted</div>
+        <h3>Shopping is the Google conversion lane.</h3>
+        <p>${shop ? `Shopping spent ${usd(shop.tot.spend)} and produced the only Google purchase (${usd(shop.tot.rev)}).` : "No Shopping delivery in this window."} The converting search term was <strong>womens multivitamin</strong>.</p>
+      </div>
+      <div class="insight">
+        <div class="k">What didn’t close</div>
+        <h3>PMax took the clicks. Display has not started.</h3>
+        <p>${pmax ? `PMax spent ${usd(pmax.tot.spend)} for ${num(pmax.tot.clicks)} clicks and 0 purchases.` : "No PMax delivery."} ${display ? "Dynamic Display retargeting is enabled at $40/day with $0 delivery." : ""} Keep Shopping as the buy campaign; treat PMax as a traffic test until it converts.</p>
+      </div>
+    </div>
+    <h2>Campaigns</h2>
+    <p class="caption">${fmtRange(...currentRange())} · ${campaigns.length} campaigns</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr>
+          <th>Campaign</th><th>Type</th><th>Status</th>
+          <th class="num">Spend</th><th class="num">Impr.</th><th class="num">Clicks</th>
+          <th class="num">CTR</th><th class="num">CPC</th><th class="num">Purchases</th>
+        </tr></thead>
+        <tbody>
+          ${campaigns.map(({ c, tot }) => `
+            <tr>
+              <td><div class="name">${c.name}</div><div class="sub">Started ${c.start || "—"} · $${c.budget || "—"}/day</div></td>
+              <td>${c.type}</td>
+              <td><span class="status ${tot.purch ? "promising" : tot.spend ? "mixed" : "thin"}">${tot.purch ? "Converted" : tot.spend ? "In market" : "No delivery"}</span></td>
+              <td class="num">${usd(tot.spend)}</td>
+              <td class="num">${num(tot.imps)}</td>
+              <td class="num">${num(tot.clicks)}</td>
+              <td class="num">${pct(tot.ctr)}</td>
+              <td class="num">${usd(tot.cpc)}</td>
+              <td class="num">${tot.purch ? num(tot.purch) : "—"}</td>
+            </tr>`).join("")}
+        </tbody>
+      </table>
+    </div>
+    <h2>Products</h2>
+    <p class="caption">Merchant Center items with delivery in the Google archive</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr>
+          <th>Product</th><th class="num">Spend</th><th class="num">Impr.</th>
+          <th class="num">Clicks</th><th class="num">Purchases</th><th class="num">Revenue</th>
+        </tr></thead>
+        <tbody>
+          ${products.map((p) => `
+            <tr>
+              <td><div class="name">${p.title}</div><div class="sub">${p.brand}</div></td>
+              <td class="num">${usd(p.spend)}</td>
+              <td class="num">${num(p.imps)}</td>
+              <td class="num">${num(p.clicks)}</td>
+              <td class="num">${p.purch ? num(p.purch) : "—"}</td>
+              <td class="num">${p.rev ? usd(p.rev) : "—"}</td>
+            </tr>`).join("")}
+        </tbody>
+      </table>
+    </div>
+    <h2>Search terms</h2>
+    <p class="caption">Shopping queries · Google archive to date. Conversion mix below is also archive-level.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr>
+          <th>Query</th><th class="num">Impr.</th><th class="num">Clicks</th>
+          <th class="num">Spend</th><th class="num">Purchases</th>
+        </tr></thead>
+        <tbody>
+          ${terms.map((t) => `
+            <tr>
+              <td>${t.term}</td>
+              <td class="num">${num(t.imps)}</td>
+              <td class="num">${num(t.clicks)}</td>
+              <td class="num">${usd(t.spend)}</td>
+              <td class="num">${t.purch ? num(t.purch) : "—"}</td>
+            </tr>`).join("")}
+        </tbody>
+      </table>
+    </div>
+    <h2>On-site actions</h2>
+    <p class="caption">Google Shopping App tags · archive totals, not date-chipped</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr>
+          <th>Action</th><th class="num">Count</th><th class="num">In conversions</th><th class="num">Value</th>
+        </tr></thead>
+        <tbody>
+          ${mix.map((row) => `
+            <tr>
+              <td>${row.name.replace("Google Shopping App ", "")}</td>
+              <td class="num">${num(row.all)}</td>
+              <td class="num">${row.purch ? num(row.purch) : "—"}</td>
+              <td class="num">${row.rev ? usd(row.rev) : "—"}</td>
+            </tr>`).join("")}
+        </tbody>
+      </table>
+    </div>
+    <p class="caption">${DATA.meta.googleNote || g.meta.note}</p>
+  `;
+}
+
+const PAGER = { story: pageStory, diagnosis: pageDiagnosis, demographics: pageDemographics, library: pageLibrary, video: pageVideo, engagement: pageEngagement, google: pageGoogle };
 
 function bindPageClicks() {
   $("page").onclick = (e) => {
@@ -690,7 +865,7 @@ $("exportBtn").onclick = () => {
   a.click();
 };
 
-fetch("data/snapshot.json?v=20260911a")
+fetch("data/snapshot.json?v=20260916a")
   .then((r) => r.json())
   .then((json) => {
     DATA = json;

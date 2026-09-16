@@ -266,8 +266,8 @@ tr { cursor: pointer; }
 .ad-cell img, .thumb {
   width: 44px; height: 44px; object-fit: cover; border-radius: 4px; background: var(--bg-2); flex-shrink: 0;
 }
-.ad-cell .name { font-weight: 600; }
-.ad-cell .sub { font-size: 12px; color: var(--muted); }
+.ad-cell .name, td .name { font-weight: 600; }
+.ad-cell .sub, td .sub { font-size: 12px; color: var(--muted); }
 
 .status {
   display: inline-block;
