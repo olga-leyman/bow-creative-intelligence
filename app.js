@@ -421,13 +421,13 @@ function monthInsightsHtml() {
         <div class="k">Month 1 success story</div>
         <h2>Building the foundation for scale.</h2>
         <p>Month 1 (August 17–September 17) gave us a strong foundation for the next phase of growth. Through structured testing across Meta and Google, we identified the audiences, messages, creative concepts, and placements most likely to drive future performance.</p>
-        <p>Paid media generated 13 Shopify online-store orders and $347 in initial revenue for Women’s Multivitamin. Meta reported eight purchases, while Shopify recorded 13, indicating that paid media contributed to more orders than platform reporting captured. Nine customers used BOW15, validating promotional messaging as an effective conversion tool.</p>
+        <p>Paid media generated 13 Shopify online-store orders and $347 in initial revenue for Women’s Multivitamin. Nine customers used BOW15, validating promotional messaging as an effective conversion tool.</p>
       </header>
 
       <div class="proof-row">
         <div class="proof"><div class="v">13</div><div class="l">Shopify orders</div><div class="n">Online store · Women’s Multivitamin</div></div>
         <div class="proof"><div class="v">$347</div><div class="l">Store revenue</div><div class="n">Initial paid-media revenue</div></div>
-        <div class="proof"><div class="v">8</div><div class="l">Meta purchases</div><div class="n">Pixel under-reported the store</div></div>
+        <div class="proof"><div class="v">$27</div><div class="l">Average order</div><div class="n">Women’s Multivitamin</div></div>
         <div class="proof"><div class="v">9</div><div class="l">Used BOW15</div><div class="n">Promo validated as a closer</div></div>
       </div>
 
@@ -554,10 +554,10 @@ function monthInsightsHtml() {
           <div class="funnel-facts">
             <div><div class="v">1.9–3.3%</div><div class="l">Weekly CTR</div></div>
             <div><div class="v">51</div><div class="l">Meta checkouts</div></div>
-            <div><div class="v">8 → 13</div><div class="l">Pixel vs Shopify</div></div>
+            <div><div class="v">13</div><div class="l">Store orders</div></div>
             <div><div class="v">9</div><div class="l">BOW15 orders</div></div>
           </div>
-          <p>The difference between Meta and Shopify purchase reporting uncovered an important measurement opportunity. Shopify will remain the primary commercial scoreboard while tracking is refined, ensuring that optimization decisions reflect actual store performance.</p>
+          <p>Shopify remains the primary commercial scoreboard, so Month 2 optimization reflects actual store performance.</p>
           <div class="achieve"><strong>Month 1 achievement.</strong> We improved traffic quality, maintained checkout activity with more focused spend, and established a clearer measurement framework for Month 2.</div>
         </div>
       </article>
@@ -628,7 +628,7 @@ function pageStory() {
         <div class="caption" style="color:#9bb0aa">01 / ${m1Chip ? "Month 1 overview" : (DATA.conceptMeta && DATA.conceptMeta["UGC Cold"] ? "Month 1 + Month 2" : "Month 1")}</div>
         <h1>${m1Chip || month ? "Building the foundation for scale." : "The selected window, in one view."}</h1>
         <p>${m1Chip || month
-          ? "Month 1 turned structured testing into a focused growth plan. Score cards use Shopify online-store orders against paid media spend. Pixel purchases stay on the concept and Google pages."
+          ? "Month 1 turned structured testing into a focused growth plan. Score cards use Shopify online-store orders against paid media spend."
           : "Store orders and revenue come from Shopify. Paid media spend is Meta plus Google. Open Month 1 for the strategy read."}</p>
       </div>
       <div class="when">${m1Chip ? "Month 1" : month ? "First month in market" : "Selected window"}
@@ -641,7 +641,7 @@ function pageStory() {
       <div class="score"><div class="v">${num(m.reach)}</div><div class="l">Total reach</div><div class="h">${m.uniqueReach ? "Unique people in this window" : "Sum of daily reach — overlap not removed"}</div></div>
       <div class="score"><div class="v">${num(p.clicks)}</div><div class="l">Total clicks</div><div class="h">${pct(p.ctr)} CTR · ${usd(p.cpc)} CPC${p.g.clicks ? " · Meta + Google" : ""}</div></div>
       <div class="score"><div class="v">${num(m.lpv)}</div><div class="l">Landing page views</div><div class="h">${m.cplpv == null ? "—" : usd(m.cplpv)} per LPV · Meta</div></div>
-      <div class="score"><div class="v">${num(p.shop.orders)}</div><div class="l">Store orders</div><div class="h">Shopify online store · pixel reported ${num(m.purch)}</div></div>
+      <div class="score"><div class="v">${num(p.shop.orders)}</div><div class="l">Store orders</div><div class="h">Shopify online store</div></div>
       <div class="score"><div class="v">${usd(p.shop.revenue, 0)}</div><div class="l">Store revenue</div><div class="h">${p.shop.orders ? usd(p.shop.aov, 0) + " AOV" : "No store orders"}</div></div>
       <div class="score"><div class="v">${p.cpa == null ? "—" : usd(p.cpa, 0)}</div><div class="l">CPA</div><div class="h">Paid media spend / Shopify store orders</div></div>
       <div class="score"><div class="v">${p.roas.toFixed(2)}x</div><div class="l">Blended ROAS</div><div class="h">Shopify store revenue / paid media spend</div></div>
@@ -1064,7 +1064,7 @@ $("exportBtn").onclick = () => {
   a.click();
 };
 
-fetch("data/snapshot.json?v=20260917e")
+fetch("data/snapshot.json?v=20260917f")
   .then((r) => r.json())
   .then((json) => {
     DATA = json;
