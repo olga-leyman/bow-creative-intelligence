@@ -413,62 +413,179 @@ function openInspector(ad) {
 
 function monthInsightsHtml() {
   if (!isMonthLook()) {
-    return `<p class="caption">Select <strong>Month 1</strong> for the 17 Aug–17 Sep strategy read. The tiles above still follow whatever window you pick.</p>`;
+    return `<p class="caption">Select <strong>Month 1</strong> for the 17 Aug–17 Sep success story. The tiles above still follow whatever window you pick.</p>`;
   }
   return `
-    <p class="caption">The tiles above follow the dates you picked. Store orders are Shopify online-store checkouts, not pixel purchases. Month 1 is 17 Aug–17 Sep. Month 2 UGC is on this page and in Audience diagnosis. Google Ads is on page 07.</p>
-    <div class="insight-grid">
-      <div class="insight wide">
-        <div class="k">What one month of testing unlocked</div>
-        <h3>From broad experimentation to a clearer growth strategy.</h3>
-        <p>In the first month, we identified the strongest customer segment, the creative message most likely to convert, and the placements delivering the best commercial results. Shopify recorded 13 paid online-store orders ($347) in that window — Meta’s pixel reported 8. The score cards use the store.</p>
+    <section class="story">
+      <header class="story-intro">
+        <div class="k">Month 1 success story</div>
+        <h2>Building the foundation for scale.</h2>
+        <p>Month 1 (August 17–September 17) gave us a strong foundation for the next phase of growth. Through structured testing across Meta and Google, we identified the audiences, messages, creative concepts, and placements most likely to drive future performance.</p>
+        <p>Paid media generated 13 Shopify online-store orders and $347 in initial revenue for Women’s Multivitamin. Meta reported eight purchases, while Shopify recorded 13, indicating that paid media contributed to more orders than platform reporting captured. Nine customers used BOW15, validating promotional messaging as an effective conversion tool.</p>
+      </header>
+
+      <div class="proof-row">
+        <div class="proof"><div class="v">13</div><div class="l">Shopify orders</div><div class="n">Online store · Women’s Multivitamin</div></div>
+        <div class="proof"><div class="v">$347</div><div class="l">Store revenue</div><div class="n">Initial paid-media revenue</div></div>
+        <div class="proof"><div class="v">8</div><div class="l">Meta purchases</div><div class="n">Pixel under-reported the store</div></div>
+        <div class="proof"><div class="v">9</div><div class="l">Used BOW15</div><div class="n">Promo validated as a closer</div></div>
       </div>
-      <div class="insight">
-        <div class="k">Core customer</div>
-        <h3>Women 25–34 are the primary growth audience. 18–24 is the efficiency test.</h3>
-        <p>Women ages 25–34 generated 5 of the 6 purchases recorded during the month. Women ages 18–24 showed early efficiency potential, delivering the strongest return per advertising dollar among the tested age groups.</p>
-        <p>Month 2 audience strategy: prioritize the proven 25–34 segment while continuing to test the promising 18–24 audience.</p>
-      </div>
-      <div class="insight">
-        <div class="k">Winning creative</div>
-        <h3>Whole Self Optimizer is the conversion concept. Social Proof supports it.</h3>
-        <p>Whole Self Optimizer produced 3 of the month’s 6 purchases and 15 checkouts. Its precision- and formula-led messaging gave customers a clearer reason to buy, making it the strongest foundation for the next round of creative.</p>
-        <p>Social Proof contributed 2 purchases, confirming that credibility-driven messaging can capture attention and support conversion.</p>
-        <p>Beauty Bestie and Hot Girl Wind Down generated engagement and cart activity without purchases. Lifestyle-led creative can attract interest, but stronger product education and offer messaging are needed to close the sale.</p>
-      </div>
-      <div class="insight">
-        <div class="k">Efficiency</div>
-        <h3>The account got more efficient as we cut lower-quality spend.</h3>
-        <ul>
-          <li>Spend decreased by 57%, from $1,846 in August to $792 in September.</li>
-          <li>September generated the same number of checkouts as August—18—on significantly less spend.</li>
-          <li>Cost per purchase improved by approximately 14%, from $462 to $396.</li>
-          <li>Weekly CTR increased from 2.0% to 3.7%, an 85% improvement.</li>
-          <li>Week 3 produced 17 checkouts on only $605 in spend, the strongest mid-funnel result of the month.</li>
-        </ul>
-        <p style="margin-top:12px">Optimization improved traffic quality and preserved buying intent even as the budget was reduced.</p>
-      </div>
-      <div class="insight">
-        <div class="k">Placements</div>
-        <h3>Feed and Reels emerged as the strongest commercial surfaces.</h3>
-        <p>Instagram Feed generated the most purchases, while Instagram Reels delivered the strongest meaningful click-through rate at 3.8%. Facebook Feed also produced a purchase from only $75 in spend — another potentially efficient placement to validate.</p>
-        <p>Instagram Stories delivered reach and engagement but was less effective at converting. Shift more budget toward Feed and Reels, where customer intent appears stronger.</p>
-      </div>
-      <div class="insight wide">
-        <div class="k">The Month 2 growth plan</div>
-        <h3>We now know who is most likely to buy, which message converts, and where purchase activity is strongest.</h3>
-        <ul>
-          <li>Scale the Whole Self Optimizer conversion concept.</li>
-          <li>Develop more founder, UGC, and science-led variations around the winning message. Month 2 UGC is live on that Whole Self hook.</li>
-          <li>Keep Social Proof in rotation as retargeting reinforcement. New social proof is UGC, not a new Social Proof concept family.</li>
-          <li>Prioritize women ages 25–34 while continuing a measured test of ages 18–24.</li>
-          <li>Shift more budget toward Feed and Reels.</li>
-          <li>Improve the offer, product page, and checkout journey to convert more of the strong checkout activity into completed purchases.</li>
-          <li>Validate tracking to ensure add-to-cart and checkout events are being reported accurately.</li>
-        </ul>
-        <p style="margin-top:12px">The first month was not simply about generating sales—it gave us a clearer, evidence-based roadmap for improving efficiency and building a repeatable acquisition strategy.</p>
-      </div>
-    </div>
+
+      <nav class="story-toc" aria-label="Month 1 chapters">
+        <span><b>01</b> Audience</span>
+        <span><b>02</b> Channel</span>
+        <span><b>03</b> Messaging</span>
+        <span><b>04</b> Creative</span>
+        <span><b>05</b> Funnel</span>
+        <span><b>06</b> Month 2</span>
+      </nav>
+
+      <article class="chapter">
+        <div class="ch-num">01</div>
+        <div class="ch-body">
+          <div class="k">Audience learnings</div>
+          <h3>Women 25–34 emerged as the strongest growth audience.</h3>
+          <p>They generated the highest purchase and checkout volume, giving us a clear primary audience for Month 2.</p>
+          <div class="trio">
+            <div class="cell lead">
+              <div class="k">Primary · scale</div>
+              <div class="who">Women 25–34</div>
+              <p>Highest purchase and checkout volume. This is the proven growth audience and where the majority of Month 2 investment belongs.</p>
+            </div>
+            <div class="cell">
+              <div class="k">Efficiency test</div>
+              <div class="who">Women 18–24</div>
+              <p>Strongest early efficiency signal — a purchase on lower spend. An important controlled test as more conversion data comes in.</p>
+            </div>
+            <div class="cell">
+              <div class="k">Secondary</div>
+              <div class="who">Women 35–44</div>
+              <p>Purchase activity and strong link engagement. A valuable supporting segment, not the core spend lane.</p>
+            </div>
+          </div>
+          <div class="achieve"><strong>Month 1 achievement.</strong> We moved from broad demographic testing to a focused audience strategy led by women ages 25–34, with two promising supporting segments.</div>
+        </div>
+      </article>
+
+      <article class="chapter">
+        <div class="ch-num">02</div>
+        <div class="ch-body">
+          <div class="k">Channel and placement learnings</div>
+          <h3>Meta—particularly Instagram—established itself as the primary acquisition channel.</h3>
+          <div class="place-grid">
+            <div class="place"><strong>Instagram Feed</strong><p>Generated the most checkout activity. One of the placements closest to purchase for Month 2.</p></div>
+            <div class="place"><strong>Instagram Reels + Facebook Reels</strong><p>Produced the strongest purchase signals. Concentrate conversion-focused Meta spend here with Feed.</p></div>
+            <div class="place"><strong>Facebook Feed</strong><p>An early purchase on approximately $89 in spend — another placement opportunity for continued testing.</p></div>
+            <div class="place"><strong>Instagram Stories</strong><p>Successfully expanded reach and introduced the brand. Month 2 can now concentrate around placements closer to purchase.</p></div>
+          </div>
+          <p>Google launched on September 11 and produced an encouraging early result. Google Shopping generated a purchase through the high-intent search term “women’s multivitamin,” validating Shopping as a promising acquisition channel. Performance Max also began building traffic and audience data that can inform future optimization.</p>
+          <div class="achieve"><strong>Month 1 achievement.</strong> We identified Instagram Feed, Instagram Reels, Facebook Reels, and Google Shopping as the strongest opportunities for conversion-focused growth.</div>
+        </div>
+      </article>
+
+      <article class="chapter">
+        <div class="ch-num">03</div>
+        <div class="ch-body">
+          <div class="k">Messaging learnings</div>
+          <h3>Customers respond when the product is designed for their life stage.</h3>
+          <p>Whole Self Optimizer emerged as the strongest conversion message. Positioning the product as a precision formula “built for women in their 20s and 30s” generated the clearest combination of purchases and checkout activity — not as another general multivitamin.</p>
+          <div class="rank">
+            <div class="rank-row lead">
+              <div class="rn">01</div>
+              <div>
+                <h4>Whole Self Optimizer — conversion lead</h4>
+                <p>Science and product specificity lead the conversion story. This is the message to scale.</p>
+              </div>
+            </div>
+            <div class="rank-row">
+              <div class="rn">02</div>
+              <div>
+                <h4>Social Proof — retargeting layer</h4>
+                <p>Demonstrated conversion potential. Future UGC will reinforce Whole Self by showing authentic customer experiences and product validation.</p>
+              </div>
+            </div>
+            <div class="rank-row">
+              <div class="rn">03</div>
+              <div>
+                <h4>Beauty Bestie — supporting proof</h4>
+                <p>Strong engagement and meaningful checkout activity. Routine, beauty, biotin, and decaf green tea strengthen the science-led Whole Self message.</p>
+              </div>
+            </div>
+            <div class="rank-row">
+              <div class="rn">04</div>
+              <div>
+                <h4>Hot Girl Wind Down — attention</h4>
+                <p>Strongest Month 1 link CTR at approximately 1.6%. Lifestyle-led creative captures attention and introduces new audiences to the brand.</p>
+              </div>
+            </div>
+          </div>
+          <div class="achieve"><strong>Month 1 achievement.</strong> Testing revealed a clear message hierarchy — science and product specificity lead the conversion story, while beauty, lifestyle, and social proof strengthen engagement and consideration.</div>
+        </div>
+      </article>
+
+      <article class="chapter">
+        <div class="ch-num">04</div>
+        <div class="ch-body">
+          <div class="k">Creative learnings</div>
+          <h3>Whole Self is a repeatable creative direction.</h3>
+          <p>Whole Self was the strongest overall creative concept, generating three Meta-attributed purchases and 15 checkouts. Two executions stood out:</p>
+          <div class="exec">
+            <div class="cell">
+              <div class="k">5.3 carousel</div>
+              <div class="quote">“Most multis are made for everyone.”</div>
+            </div>
+            <div class="cell">
+              <div class="k">5.1 video</div>
+              <div class="quote">“Built for women in their 20s and 30s—finally.”</div>
+            </div>
+          </div>
+          <p>Social Proof generated two purchases, confirming its value as a conversion-reinforcement concept. Beauty Bestie generated approximately 31% engagement and eight checkouts, demonstrating strong audience interest in the product’s beauty and wellness benefits. Clean Girl 4.1 generated an early purchase, giving us another creative direction to monitor as more data develops.</p>
+          <p>Early Month 2 UGC strengthened the Whole Self finding: Julia 2 Cold produced the first UGC purchase using the same core positioning, at approximately $89 pixel-reported CPA.</p>
+          <div class="achieve"><strong>Month 1 achievement.</strong> We identified a repeatable creative direction that can now be expanded across UGC, video, carousel, and static formats.</div>
+        </div>
+      </article>
+
+      <article class="chapter">
+        <div class="ch-num">05</div>
+        <div class="ch-body">
+          <div class="k">Funnel and optimization progress</div>
+          <h3>Traffic quality improved. Shopify is the commercial scoreboard.</h3>
+          <p>Weekly CTR increased from approximately 1.9% to 3.3%, while checkout volume remained steady even as spend became more focused. Customers demonstrated meaningful purchase intent.</p>
+          <div class="funnel-facts">
+            <div><div class="v">1.9–3.3%</div><div class="l">Weekly CTR</div></div>
+            <div><div class="v">51</div><div class="l">Meta checkouts</div></div>
+            <div><div class="v">8 → 13</div><div class="l">Pixel vs Shopify</div></div>
+            <div><div class="v">9</div><div class="l">BOW15 orders</div></div>
+          </div>
+          <p>The difference between Meta and Shopify purchase reporting uncovered an important measurement opportunity. Shopify will remain the primary commercial scoreboard while tracking is refined, ensuring that optimization decisions reflect actual store performance.</p>
+          <div class="achieve"><strong>Month 1 achievement.</strong> We improved traffic quality, maintained checkout activity with more focused spend, and established a clearer measurement framework for Month 2.</div>
+        </div>
+      </article>
+
+      <article class="chapter">
+        <div class="ch-num">06</div>
+        <div class="ch-body">
+          <div class="k">Month 2 growth strategy</div>
+          <h3>Build on the strongest combination identified during testing.</h3>
+          <ul class="plan">
+            <li>Prioritize women ages 25–34.</li>
+            <li>Maintain controlled tests for women ages 18–24 and 35–44.</li>
+            <li>Concentrate Meta investment in Instagram Feed and Reels.</li>
+            <li>Expand Whole Self across UGC, video, carousel, and static formats.</li>
+            <li>Use Beauty Bestie benefits as supporting proof within the Whole Self story.</li>
+            <li>Use UGC and Social Proof to strengthen retargeting.</li>
+            <li>Develop Google Shopping around high-intent searches.</li>
+            <li>Use Shopify orders as the primary performance benchmark.</li>
+          </ul>
+        </div>
+      </article>
+
+      <aside class="takeaway">
+        <div class="k">Overall Month 1 takeaway</div>
+        <h3>Month 1 successfully transformed broad testing into a focused growth strategy.</h3>
+        <p>We now know who is most likely to buy, which message creates the strongest purchase intent, which placements move customers closest to conversion, and how creative roles should work together. The foundation is now in place to enter Month 2 with greater focus: the right audience, a validated conversion message, stronger placement allocation, and a clear creative system for continued growth.</p>
+      </aside>
+    </section>
   `;
 }
 
@@ -537,9 +654,9 @@ function pageStory() {
     <div class="hero">
       <div>
         <div class="caption" style="color:#9bb0aa">01 / ${m1Chip ? "Month 1 overview" : (DATA.conceptMeta && DATA.conceptMeta["UGC Cold"] ? "Month 1 + Month 2" : "Month 1")}</div>
-        <h1>${m1Chip || month ? "What one month of testing unlocked." : "The selected window, in one view."}</h1>
+        <h1>${m1Chip || month ? "Building the foundation for scale." : "The selected window, in one view."}</h1>
         <p>${m1Chip || month
-          ? "Score cards use Shopify online-store orders against paid media spend (Meta + Google). Pixel purchases stay on the concept and Google pages."
+          ? "Month 1 turned structured testing into a focused growth plan. Score cards use Shopify online-store orders against paid media spend. Pixel purchases stay on the concept and Google pages."
           : "Store orders and revenue come from Shopify. Paid media spend is Meta plus Google. Open Month 1 for the strategy read."}</p>
       </div>
       <div class="when">${m1Chip ? "Month 1" : month ? "First month in market" : "Selected window"}
@@ -557,8 +674,8 @@ function pageStory() {
       <div class="score"><div class="v">${p.cpa == null ? "—" : usd(p.cpa, 0)}</div><div class="l">CPA</div><div class="h">Paid media spend / Shopify store orders</div></div>
       <div class="score"><div class="v">${p.roas.toFixed(2)}x</div><div class="l">Blended ROAS</div><div class="h">Shopify store revenue / paid media spend</div></div>
     </div>
-    ${shopifyOrdersTable(p.shop.list)}
     ${monthInsightsHtml()}
+    ${shopifyOrdersTable(p.shop.list)}
     ${ugcInsightHtml()}
     ${DATA.google ? `<div class="insight wide" style="margin-top:16px">
       <div class="k">Google Ads · live since 11 Sep</div>
