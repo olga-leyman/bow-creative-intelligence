@@ -60,8 +60,12 @@ function month1Range() {
   const min = DATA.meta.minDate;
   const max = DATA.meta.maxDate;
   const from = DATA.meta.month1From || "2026-08-17";
-  const to = DATA.meta.month1To || "2026-09-11";
+  const to = DATA.meta.month1To || "2026-09-17";
   return [clamp(from, min, max), clamp(to, min, max)];
+}
+
+function month1LabelRange() {
+  return [DATA.meta.month1From || "2026-08-17", DATA.meta.month1To || "2026-09-17"];
 }
 
 function currentRange() {
@@ -409,15 +413,15 @@ function openInspector(ad) {
 
 function monthInsightsHtml() {
   if (!isMonthLook()) {
-    return `<p class="caption">Select <strong>Month 1</strong> for the 17 Aug–11 Sep strategy read. The tiles above still follow whatever window you pick.</p>`;
+    return `<p class="caption">Select <strong>Month 1</strong> for the 17 Aug–17 Sep strategy read. The tiles above still follow whatever window you pick.</p>`;
   }
   return `
-    <p class="caption">The tiles above follow the dates you picked. Store orders are Shopify online-store checkouts, not pixel purchases. The written Month 1 read is the 17 Aug–11 Sep test. Month 2 UGC is on this page and in Audience diagnosis. Google Ads is on page 07.</p>
+    <p class="caption">The tiles above follow the dates you picked. Store orders are Shopify online-store checkouts, not pixel purchases. Month 1 is 17 Aug–17 Sep. Month 2 UGC is on this page and in Audience diagnosis. Google Ads is on page 07.</p>
     <div class="insight-grid">
       <div class="insight wide">
         <div class="k">What one month of testing unlocked</div>
         <h3>From broad experimentation to a clearer growth strategy.</h3>
-        <p>In the first month, we identified the strongest customer segment, the creative message most likely to convert, and the placements delivering the best commercial results. Shopify recorded 9 paid online-store orders ($262) in that window — Meta’s pixel reported 6. The score cards use the store.</p>
+        <p>In the first month, we identified the strongest customer segment, the creative message most likely to convert, and the placements delivering the best commercial results. Shopify recorded 13 paid online-store orders ($347) in that window — Meta’s pixel reported 8. The score cards use the store.</p>
       </div>
       <div class="insight">
         <div class="k">Core customer</div>
@@ -538,8 +542,8 @@ function pageStory() {
           ? "Score cards use Shopify online-store orders against paid media spend (Meta + Google). Pixel purchases stay on the concept and Google pages."
           : "Store orders and revenue come from Shopify. Paid media spend is Meta plus Google. Open Month 1 for the strategy read."}</p>
       </div>
-      <div class="when">${m1Chip ? "Month 1 test" : month ? "First month in market" : "Selected window"}
-        <b>${fmtRange(from, to)}</b>
+      <div class="when">${m1Chip ? "Month 1" : month ? "First month in market" : "Selected window"}
+        <b>${fmtRange(...(m1Chip ? month1LabelRange() : [from, to]))}</b>
         ${DATA.meta.shopifyNote || DATA.meta.note}
       </div>
     </div>
@@ -972,7 +976,7 @@ $("exportBtn").onclick = () => {
   a.click();
 };
 
-fetch("data/snapshot.json?v=20260916d")
+fetch("data/snapshot.json?v=20260916e")
   .then((r) => r.json())
   .then((json) => {
     DATA = json;
