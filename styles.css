@@ -392,6 +392,7 @@ table.plain tr { cursor: default; }
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
 }
+.proof-row.five { grid-template-columns: repeat(5, 1fr); }
 .proof { padding: 20px 18px 18px 0; }
 .proof + .proof { border-left: 1px solid var(--line); padding-left: 18px; }
 .proof .v {

@@ -421,14 +421,15 @@ function monthInsightsHtml() {
         <div class="k">Month 1 success story</div>
         <h2>Building the foundation for scale.</h2>
         <p>Month 1 (August 17–September 17) gave us a strong foundation for the next phase of growth. Through structured testing across Meta and Google, we identified the audiences, messages, creative concepts, and placements most likely to drive future performance.</p>
-        <p>Paid media generated 13 Shopify online-store orders and $347 in initial revenue for Women’s Multivitamin. Nine customers used BOW15, validating promotional messaging as an effective conversion tool.</p>
+        <p>Paid media generated 13 Shopify online-store orders and $347 in initial revenue for Women’s Multivitamin. First-click, 9 came from Meta, 3 from Instagram, and 1 from Google. Nine customers used BOW15, validating promotional messaging as an effective conversion tool.</p>
       </header>
 
-      <div class="proof-row">
+      <div class="proof-row five">
         <div class="proof"><div class="v">13</div><div class="l">Shopify orders</div><div class="n">Online store · Women’s Multivitamin</div></div>
         <div class="proof"><div class="v">$347</div><div class="l">Store revenue</div><div class="n">Initial paid-media revenue</div></div>
-        <div class="proof"><div class="v">$27</div><div class="l">Average order</div><div class="n">Women’s Multivitamin</div></div>
-        <div class="proof"><div class="v">9</div><div class="l">Used BOW15</div><div class="n">Promo validated as a closer</div></div>
+        <div class="proof"><div class="v">9</div><div class="l">Meta first-click</div><div class="n">Paid Meta</div></div>
+        <div class="proof"><div class="v">3</div><div class="l">Instagram</div><div class="n">First-click</div></div>
+        <div class="proof"><div class="v">1</div><div class="l">Google</div><div class="n">First-click</div></div>
       </div>
 
       <nav class="story-toc" aria-label="Month 1 chapters">
@@ -1064,7 +1065,7 @@ $("exportBtn").onclick = () => {
   a.click();
 };
 
-fetch("data/snapshot.json?v=20260917f")
+fetch("data/snapshot.json?v=20260917g")
   .then((r) => r.json())
   .then((json) => {
     DATA = json;
