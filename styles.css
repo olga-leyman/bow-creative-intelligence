@@ -342,8 +342,42 @@ table.plain tr { cursor: default; }
   margin: 12px 0 20px;
 }
 
-.story-intro { max-width: 760px; margin: 28px 0 8px; }
-.story-intro p { margin: 0; color: var(--muted); font-size: 16px; line-height: 1.55; }
+.story { margin-top: 8px; }
+.story-intro { max-width: 780px; margin: 32px 0 4px; }
+.story-intro h2 {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 34px;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  margin: 6px 0 16px;
+}
+.story-intro p { margin: 0 0 12px; color: var(--muted); font-size: 16px; line-height: 1.6; }
+.story-intro p:last-child { margin-bottom: 0; color: var(--ink); }
+
+.story-toc {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0;
+  margin: 8px 0 8px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.story-toc span {
+  padding: 14px 12px 14px 0;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+.story-toc span + span { border-left: 1px solid var(--line); padding-left: 14px; }
+.story-toc b {
+  display: block;
+  font-family: var(--serif);
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--gold);
+  margin-bottom: 2px;
+}
 .trio .cell.lead .who { color: #fff; }
 .plan li::before {
   content: "–";
@@ -553,7 +587,8 @@ table.plain tr { cursor: default; }
 
 @media (max-width: 1100px) {
   .kpi-row, .signal-grid, .score-grid, .insight-grid, .bundle-head,
-  .proof-row, .place-grid, .exec, .funnel-facts, .plan { grid-template-columns: 1fr 1fr; }
+  .proof-row, .place-grid, .exec, .funnel-facts, .plan, .story-toc { grid-template-columns: 1fr 1fr; }
+  .story-toc span + span { border-left: 0; padding-left: 0; border-top: 1px solid var(--line); }
   .plan { grid-template-rows: none; grid-auto-flow: row; }
   .trio { grid-template-columns: 1fr; }
   .chapter { grid-template-columns: 1fr; gap: 4px; }
@@ -563,6 +598,6 @@ table.plain tr { cursor: default; }
 }
 
 @media (max-width: 720px) {
-  .proof-row, .trio, .place-grid, .exec, .funnel-facts, .plan, .score-grid { grid-template-columns: 1fr; }
+  .proof-row, .trio, .place-grid, .exec, .funnel-facts, .plan, .score-grid, .story-toc { grid-template-columns: 1fr; }
   .proof + .proof { border-left: 0; padding-left: 0; border-top: 1px solid var(--line); }
 }

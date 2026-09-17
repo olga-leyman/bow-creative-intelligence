@@ -613,34 +613,6 @@ function ugcInsightHtml() {
   `;
 }
 
-function shopifyOrdersTable(list) {
-  if (!list.length) {
-    return `<p class="caption">No paid Shopify online-store orders in this window. Recurring, drafts, comps, and refunds are excluded.</p>`;
-  }
-  return `
-    <h2>Shopify online-store orders</h2>
-    <p class="caption">${DATA.shopify && DATA.shopify.note ? DATA.shopify.note : "Paid web checkouts only."}</p>
-    <div class="table-wrap">
-      <table class="plain">
-        <thead><tr>
-          <th>Order</th><th>Date</th><th>Product</th><th>Code</th>
-          <th class="num">Total</th>
-        </tr></thead>
-        <tbody>
-          ${list.map((o) => `
-            <tr>
-              <td><div class="name">${o.id}</div></td>
-              <td>${fmtDate(o.date)}</td>
-              <td>${o.product || "—"}</td>
-              <td>${o.code || "—"}</td>
-              <td class="num">${usd(o.total)}</td>
-            </tr>`).join("")}
-        </tbody>
-      </table>
-    </div>
-  `;
-}
-
 function pageStory() {
   const p = paidMediaTotals();
   const m = p.meta;
@@ -675,7 +647,6 @@ function pageStory() {
       <div class="score"><div class="v">${p.roas.toFixed(2)}x</div><div class="l">Blended ROAS</div><div class="h">Shopify store revenue / paid media spend</div></div>
     </div>
     ${monthInsightsHtml()}
-    ${shopifyOrdersTable(p.shop.list)}
     ${ugcInsightHtml()}
     ${DATA.google ? `<div class="insight wide" style="margin-top:16px">
       <div class="k">Google Ads · live since 11 Sep</div>
@@ -1093,7 +1064,7 @@ $("exportBtn").onclick = () => {
   a.click();
 };
 
-fetch("data/snapshot.json?v=20260916e")
+fetch("data/snapshot.json?v=20260917e")
   .then((r) => r.json())
   .then((json) => {
     DATA = json;
