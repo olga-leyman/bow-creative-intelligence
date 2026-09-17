@@ -315,6 +315,20 @@ table.plain tr { cursor: default; }
 .bundle.open .bundle-body { display: block; }
 
 .bars { display: flex; flex-direction: column; gap: 8px; }
+.sort-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+  margin: 4px 0 10px;
+}
+.sort-label {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-right: 4px;
+}
 .bar-row { display: grid; grid-template-columns: 52px 1fr; gap: 10px; align-items: center; }
 .bar-row img { width: 52px; height: 36px; object-fit: cover; border-radius: 3px; background: var(--bg-2); }
 .bar-stack { display: flex; height: 18px; background: var(--bg-2); width: 100%; }

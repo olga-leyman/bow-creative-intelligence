@@ -24,6 +24,7 @@ const state = {
   to: null,
   selectedAd: null,
   sort: "spend",
+  videoSort: "hook",
 };
 
 let DATA = null;
@@ -807,20 +808,60 @@ function pageLibrary() {
   `;
 }
 
+const VIDEO_SORTS = [
+  ["hook", "Hook rate"],
+  ["engRate", "Engagement"],
+  ["purch", "Purchases"],
+  ["linkCtr", "Link CTR"],
+  ["ctr", "CTR"],
+  ["hold", "Hold 25%"],
+  ["complete", "Completion"],
+  ["ic", "Checkouts"],
+  ["atc", "Add to cart"],
+  ["lpv", "LPVs"],
+  ["spend", "Spend"],
+  ["imps", "Impressions"],
+];
+
+function videoSortValue(m, key) {
+  const v = m[key];
+  return v == null || Number.isNaN(v) ? -Infinity : v;
+}
+
+function videoSortText(m, key) {
+  if (key === "spend") return usd(m.spend);
+  if (["hook", "hold", "complete", "ctr", "linkCtr", "engRate"].includes(key)) {
+    const v = m[key];
+    return v == null ? "—" : pct(v);
+  }
+  return num(m[key] || 0);
+}
+
+function videoRowMeta(m, key) {
+  const parts = [];
+  if (key !== "hook") parts.push(`${m.hook == null ? "—" : pct(m.hook)} hook`);
+  if (key !== "linkCtr" && key !== "ctr") parts.push(`${pct(m.linkCtr)} link CTR`);
+  if (key !== "engRate") parts.push(`${pct(m.engRate)} eng`);
+  if (key !== "purch") parts.push(m.purch ? `${num(m.purch)} purch` : "0 purch");
+  return parts.slice(0, 3).join(" · ");
+}
+
 function pageVideo() {
+  const sortKey = state.videoSort || "hook";
+  const sortLabel = (VIDEO_SORTS.find(([id]) => id === sortKey) || ["hook", "Hook rate"])[1];
   const vids = adsWithSpend()
     .filter((x) => x.ad.isVideo && x.m.plays > 0)
-    .sort((a, b) => (b.m.hook || 0) - (a.m.hook || 0));
+    .sort((a, b) => videoSortValue(b.m, sortKey) - videoSortValue(a.m, sortKey) || (b.m.spend || 0) - (a.m.spend || 0));
   if (!vids.length) return `<h1>Video retention</h1><p class="lede">No video delivery in this window.</p>`;
   const bestTraffic = [...vids].sort((a, b) => b.m.link - a.m.link)[0];
   const bestEng = [...vids].sort((a, b) => b.m.engRate - a.m.engRate)[0];
-  const bestHook = vids[0];
-  const maxHook = Math.max(...vids.map((v) => v.m.hook || 0), 1);
+  const bestHook = [...vids].sort((a, b) => (b.m.hook || 0) - (a.m.hook || 0))[0];
+  const maxBar = Math.max(...vids.map((v) => Math.max(0, v.m[sortKey] || 0)), 1);
   const tot = sumMetrics(vids.flatMap((v) => rowsBetween(v.ad.daily)));
   return `
     <div class="caption">04 / Video creative analysis</div>
     <h1>Which video stopped attention—and which one earned the click?</h1>
-    <p class="lede">Attention → retention → traffic. Hook rate is 25% video views ÷ impressions.</p>
+    <p class="lede">Attention → retention → traffic. Hook rate is 25% video views ÷ impressions. Sort the list by the KPI you want to judge.</p>
     <div class="kpi-row">
       <div class="kpi"><div class="v">${tot.hook == null ? "—" : pct(tot.hook)}</div><div class="l">Hook rate</div></div>
       <div class="kpi"><div class="v">${tot.hold == null ? "—" : pct(tot.hold)}</div><div class="l">25% retained</div></div>
@@ -833,18 +874,22 @@ function pageVideo() {
       <div class="signal"><div class="k">Highest hook rate</div><h3>${bestHook.ad.concept} ${bestHook.ad.variant}</h3><p>${pct(bestHook.m.hook)} hook · ${num(bestHook.m.imps)} impressions</p></div>
     </div>
     <h2>One-glance creative comparison</h2>
-    <p class="caption">Sorted by highest hook rate · ${fmtRange(...currentRange())}</p>
+    <div class="sort-row">
+      <span class="sort-label">Sort by</span>
+      ${VIDEO_SORTS.map(([id, label]) => `<button class="chip ${sortKey === id ? "active" : ""}" data-vsort="${id}">${label}</button>`).join("")}
+    </div>
+    <p class="caption">Sorted by ${sortLabel.toLowerCase()} · ${fmtRange(...currentRange())} · ${vids.length} videos</p>
     <div class="bars">
-      ${vids.map((x) => `
+      ${vids.map((x, i) => `
         <div class="bar-row" data-ad="${x.ad.id}" style="cursor:pointer">
           ${thumbEl(x.ad, 52)}
           <div>
-            <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px">
-              <span>${x.ad.concept} ${x.ad.variant} · ${x.ad.format}</span>
-              <span>${pct(x.m.hook)} hook · ${pct(x.m.linkCtr)} link CTR</span>
+            <div style="display:flex;justify-content:space-between;gap:12px;font-size:12px;margin-bottom:4px">
+              <span><strong style="color:var(--gold);margin-right:8px">${String(i + 1).padStart(2, "0")}</strong>${x.ad.concept} ${x.ad.variant} · ${x.ad.format}</span>
+              <span><strong>${videoSortText(x.m, sortKey)}</strong> ${sortLabel.toLowerCase()}${videoRowMeta(x.m, sortKey) ? " · " + videoRowMeta(x.m, sortKey) : ""}</span>
             </div>
             <div class="bar-stack">
-              <span class="seg-hook" style="width:${(100 * (x.m.hook || 0)) / maxHook}%"></span>
+              <span class="seg-hook" style="width:${Math.max(2, (100 * Math.max(0, x.m[sortKey] || 0)) / maxBar)}%"></span>
             </div>
           </div>
         </div>`).join("")}
@@ -1036,6 +1081,12 @@ const PAGER = { story: pageStory, diagnosis: pageDiagnosis, demographics: pageDe
 
 function bindPageClicks() {
   $("page").onclick = (e) => {
+    const vsort = e.target.closest("[data-vsort]");
+    if (vsort) {
+      state.videoSort = vsort.dataset.vsort;
+      render();
+      return;
+    }
     const bundle = e.target.closest("[data-bundle]");
     if (bundle && !e.target.closest("tr")) {
       bundle.classList.toggle("open");
@@ -1072,7 +1123,7 @@ $("exportBtn").onclick = () => {
   a.click();
 };
 
-fetch("data/snapshot.json?v=20260917h")
+fetch("data/snapshot.json?v=20260917i")
   .then((r) => r.json())
   .then((json) => {
     DATA = json;
