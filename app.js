@@ -623,6 +623,11 @@ function pageStory() {
   const spendHint = p.g.spend
     ? `Meta ${usd(p.meta.spend, 0)} · Google ${usd(p.g.spend, 0)}`
     : `Meta ${usd(p.meta.spend, 0)} · Google not live yet`;
+  const igHint = m.igEstimated
+    ? "Spend-weighted for this window"
+    : DATA.igExport
+      ? `Ads Manager · ${fmtRange(DATA.igExport.start, DATA.igExport.stop)}`
+      : "Ads Manager · this window";
   return `
     <div class="hero">
       <div>
@@ -637,15 +642,17 @@ function pageStory() {
         ${DATA.meta.shopifyNote || DATA.meta.note}
       </div>
     </div>
-    <div class="score-grid">
+    <div class="score-grid ten">
       <div class="score"><div class="v">${usd(p.spend, 0)}</div><div class="l">Paid media spend</div><div class="h">${spendHint}</div></div>
       <div class="score"><div class="v">${num(m.reach)}</div><div class="l">Total reach</div><div class="h">${m.uniqueReach ? "Unique people in this window" : "Sum of daily reach — overlap not removed"}</div></div>
       <div class="score"><div class="v">${num(p.clicks)}</div><div class="l">Total clicks</div><div class="h">${pct(p.ctr)} CTR · ${usd(p.cpc)} CPC${p.g.clicks ? " · Meta + Google" : ""}</div></div>
       <div class="score"><div class="v">${num(m.lpv)}</div><div class="l">Landing page views</div><div class="h">${m.cplpv == null ? "—" : usd(m.cplpv)} per LPV · Meta</div></div>
+      <div class="score ${m.igProfile ? "" : "muted"}"><div class="v">${m.igProfile ? num(m.igProfile) : "—"}</div><div class="l">Instagram profile views</div><div class="h">${igHint}</div></div>
       <div class="score"><div class="v">${num(p.shop.orders)}</div><div class="l">Store orders</div><div class="h">Shopify online store</div></div>
       <div class="score"><div class="v">${usd(p.shop.revenue, 0)}</div><div class="l">Store revenue</div><div class="h">${p.shop.orders ? usd(p.shop.aov, 0) + " AOV" : "No store orders"}</div></div>
       <div class="score"><div class="v">${p.cpa == null ? "—" : usd(p.cpa, 0)}</div><div class="l">CPA</div><div class="h">Paid media spend / Shopify store orders</div></div>
       <div class="score"><div class="v">${p.roas.toFixed(2)}x</div><div class="l">Blended ROAS</div><div class="h">Shopify store revenue / paid media spend</div></div>
+      <div class="score ${m.igFollow ? "" : "muted"}"><div class="v">${m.igFollow ? num(m.igFollow) : "—"}</div><div class="l">Instagram followers</div><div class="h">${igHint}</div></div>
     </div>
     ${monthInsightsHtml()}
     ${ugcInsightHtml()}
@@ -1065,7 +1072,7 @@ $("exportBtn").onclick = () => {
   a.click();
 };
 
-fetch("data/snapshot.json?v=20260917g")
+fetch("data/snapshot.json?v=20260917h")
   .then((r) => r.json())
   .then((json) => {
     DATA = json;
