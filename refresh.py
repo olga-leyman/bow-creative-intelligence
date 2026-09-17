@@ -342,6 +342,8 @@ def main():
     ranges = set()
     ranges.add((MIN_DATE, today))
     end = datetime.fromisoformat(today)
+    month1_to = snap.get("meta", {}).get("month1To") or "2026-09-11"
+    ranges.add((MIN_DATE, month1_to))
     for span in (0, 6, 13, 29):
         start = (end - timedelta(days=span)).date().isoformat()
         if start < MIN_DATE:

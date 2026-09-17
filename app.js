@@ -9,6 +9,7 @@ const PAGES = [
 ];
 
 const PRESETS = [
+  ["m1", "Month 1"],
   ["1d", "1 day"],
   ["7d", "7 day"],
   ["14d", "14 day"],
@@ -18,7 +19,7 @@ const PRESETS = [
 
 const state = {
   page: "story",
-  preset: "30d",
+  preset: "m1",
   from: null,
   to: null,
   selectedAd: null,
@@ -55,9 +56,18 @@ function num(n) { return (n || 0).toLocaleString("en-US"); }
 function pct(n, d = 2) { return `${(n || 0).toFixed(d)}%`; }
 function dash(v, fn) { return v == null || Number.isNaN(v) ? "—" : fn(v); }
 
+function month1Range() {
+  const min = DATA.meta.minDate;
+  const max = DATA.meta.maxDate;
+  const from = DATA.meta.month1From || "2026-08-17";
+  const to = DATA.meta.month1To || "2026-09-11";
+  return [clamp(from, min, max), clamp(to, min, max)];
+}
+
 function currentRange() {
   const min = DATA.meta.minDate;
   const max = DATA.meta.maxDate;
+  if (state.preset === "m1") return month1Range();
   if (state.preset === "custom") {
     return [clamp(state.from || min, min, max), clamp(state.to || max, min, max)];
   }
@@ -181,10 +191,41 @@ function windowMetrics() {
 }
 
 function isMonthLook() {
-  if (state.preset === "30d") return true;
+  if (state.preset === "m1" || state.preset === "30d") return true;
   const [from, to] = currentRange();
   const days = (Date.parse(to + "T12:00:00") - Date.parse(from + "T12:00:00")) / 86400000;
   return days >= 25;
+}
+
+function shopifyStoreOrders() {
+  return ((DATA.shopify && DATA.shopify.orders) || []).filter((o) => o.kind === "store" && inRange(o.date));
+}
+
+function shopifyStoreMetrics() {
+  const list = shopifyStoreOrders().sort((a, b) => a.date.localeCompare(b.date) || a.id.localeCompare(b.id));
+  const revenue = list.reduce((s, o) => s + (o.total || 0), 0);
+  return { orders: list.length, revenue, aov: list.length ? revenue / list.length : 0, list };
+}
+
+function paidMediaTotals() {
+  const meta = windowMetrics();
+  const g = googleAccountMetrics();
+  const shop = shopifyStoreMetrics();
+  const spend = meta.spend + g.spend;
+  const clicks = meta.clicks + g.clicks;
+  const imps = meta.imps + g.imps;
+  return {
+    meta,
+    g,
+    shop,
+    spend,
+    clicks,
+    imps,
+    ctr: imps ? (100 * clicks) / imps : 0,
+    cpc: clicks ? spend / clicks : 0,
+    cpa: shop.orders ? spend / shop.orders : null,
+    roas: spend ? shop.revenue / spend : 0,
+  };
 }
 
 function flattenAdDaily() {
@@ -368,15 +409,15 @@ function openInspector(ad) {
 
 function monthInsightsHtml() {
   if (!isMonthLook()) {
-    return `<p class="caption">Select <strong>30 day</strong> for the Month 1 strategy read. The tiles above still follow whatever window you pick.</p>`;
+    return `<p class="caption">Select <strong>Month 1</strong> for the 17 Aug–11 Sep strategy read. The tiles above still follow whatever window you pick.</p>`;
   }
   return `
-    <p class="caption">The tiles above follow the dates you picked. The written Month 1 read is the 17 Aug–11 Sep test. Month 2 UGC is on this page and in Audience diagnosis. Google Ads is on page 07.</p>
+    <p class="caption">The tiles above follow the dates you picked. Store orders are Shopify online-store checkouts, not pixel purchases. The written Month 1 read is the 17 Aug–11 Sep test. Month 2 UGC is on this page and in Audience diagnosis. Google Ads is on page 07.</p>
     <div class="insight-grid">
       <div class="insight wide">
         <div class="k">What one month of testing unlocked</div>
         <h3>From broad experimentation to a clearer growth strategy.</h3>
-        <p>In the first month, we identified the strongest customer segment, the creative message most likely to convert, and the placements delivering the best commercial results.</p>
+        <p>In the first month, we identified the strongest customer segment, the creative message most likely to convert, and the placements delivering the best commercial results. Shopify recorded 9 paid online-store orders ($262) in that window — Meta’s pixel reported 6. The score cards use the store.</p>
       </div>
       <div class="insight">
         <div class="k">Core customer</div>
@@ -451,34 +492,68 @@ function ugcInsightHtml() {
   `;
 }
 
+function shopifyOrdersTable(list) {
+  if (!list.length) {
+    return `<p class="caption">No paid Shopify online-store orders in this window. Recurring, drafts, comps, and refunds are excluded.</p>`;
+  }
+  return `
+    <h2>Shopify online-store orders</h2>
+    <p class="caption">${DATA.shopify && DATA.shopify.note ? DATA.shopify.note : "Paid web checkouts only."}</p>
+    <div class="table-wrap">
+      <table class="plain">
+        <thead><tr>
+          <th>Order</th><th>Date</th><th>Product</th><th>Code</th>
+          <th class="num">Total</th>
+        </tr></thead>
+        <tbody>
+          ${list.map((o) => `
+            <tr>
+              <td><div class="name">${o.id}</div></td>
+              <td>${fmtDate(o.date)}</td>
+              <td>${o.product || "—"}</td>
+              <td>${o.code || "—"}</td>
+              <td class="num">${usd(o.total)}</td>
+            </tr>`).join("")}
+        </tbody>
+      </table>
+    </div>
+  `;
+}
+
 function pageStory() {
-  const m = windowMetrics();
+  const p = paidMediaTotals();
+  const m = p.meta;
   const [from, to] = currentRange();
   const month = isMonthLook();
+  const m1Chip = state.preset === "m1";
+  const spendHint = p.g.spend
+    ? `Meta ${usd(p.meta.spend, 0)} · Google ${usd(p.g.spend, 0)}`
+    : `Meta ${usd(p.meta.spend, 0)} · Google not live yet`;
   return `
     <div class="hero">
       <div>
-        <div class="caption" style="color:#9bb0aa">01 / ${DATA.conceptMeta && DATA.conceptMeta["UGC Cold"] ? "Month 1 + Month 2" : "Month 1"}</div>
-        <h1>${month ? "What one month of testing unlocked." : "The selected window, in one view."}</h1>
-        <p>${month
-          ? "We moved from broad experimentation to a clearer growth strategy—who is most likely to buy, which message converts, and which placements deliver commercial results."
-          : "Spend, reach, clicks, landing page views, carts, and purchases for the dates you picked. Open 30 day for the Month 1 strategy read."}</p>
+        <div class="caption" style="color:#9bb0aa">01 / ${m1Chip ? "Month 1 overview" : (DATA.conceptMeta && DATA.conceptMeta["UGC Cold"] ? "Month 1 + Month 2" : "Month 1")}</div>
+        <h1>${m1Chip || month ? "What one month of testing unlocked." : "The selected window, in one view."}</h1>
+        <p>${m1Chip || month
+          ? "Score cards use Shopify online-store orders against paid media spend (Meta + Google). Pixel purchases stay on the concept and Google pages."
+          : "Store orders and revenue come from Shopify. Paid media spend is Meta plus Google. Open Month 1 for the strategy read."}</p>
       </div>
-      <div class="when">${month ? "First month in market" : "Selected window"}
+      <div class="when">${m1Chip ? "Month 1 test" : month ? "First month in market" : "Selected window"}
         <b>${fmtRange(from, to)}</b>
-        ${DATA.meta.note}
+        ${DATA.meta.shopifyNote || DATA.meta.note}
       </div>
     </div>
     <div class="score-grid">
-      <div class="score"><div class="v">${usd(m.spend, 0)}</div><div class="l">Total spend</div></div>
+      <div class="score"><div class="v">${usd(p.spend, 0)}</div><div class="l">Paid media spend</div><div class="h">${spendHint}</div></div>
       <div class="score"><div class="v">${num(m.reach)}</div><div class="l">Total reach</div><div class="h">${m.uniqueReach ? "Unique people in this window" : "Sum of daily reach — overlap not removed"}</div></div>
-      <div class="score"><div class="v">${num(m.clicks)}</div><div class="l">Total clicks</div><div class="h">${pct(m.ctr)} CTR · ${usd(m.cpc)} CPC</div></div>
-      <div class="score"><div class="v">${num(m.lpv)}</div><div class="l">Landing page views</div><div class="h">${m.cplpv == null ? "—" : usd(m.cplpv)} per LPV</div></div>
-      <div class="score"><div class="v">${num(m.atc)}</div><div class="l">Total add to cart</div><div class="h">${num(m.ic)} checkouts initiated</div></div>
-      <div class="score"><div class="v">${num(m.purch)}</div><div class="l">Total purchases</div><div class="h">${m.cpa == null ? "No purchase CPA" : usd(m.cpa, 0) + " CPA"} · ${m.roas.toFixed(2)}x ROAS</div></div>
-      <div class="score ${m.igProfile ? "" : "muted"}"><div class="v">${m.igProfile ? num(m.igProfile) : "—"}</div><div class="l">Instagram profile views</div><div class="h">${m.igEstimated ? "Spend-weighted for this window" : "Ads Manager · this window"}</div></div>
-      <div class="score ${m.igFollow ? "" : "muted"}"><div class="v">${m.igFollow ? num(m.igFollow) : "—"}</div><div class="l">Instagram followers</div><div class="h">${m.igEstimated ? "Spend-weighted for this window" : "Ads Manager · this window"}</div></div>
+      <div class="score"><div class="v">${num(p.clicks)}</div><div class="l">Total clicks</div><div class="h">${pct(p.ctr)} CTR · ${usd(p.cpc)} CPC${p.g.clicks ? " · Meta + Google" : ""}</div></div>
+      <div class="score"><div class="v">${num(m.lpv)}</div><div class="l">Landing page views</div><div class="h">${m.cplpv == null ? "—" : usd(m.cplpv)} per LPV · Meta</div></div>
+      <div class="score"><div class="v">${num(p.shop.orders)}</div><div class="l">Store orders</div><div class="h">Shopify online store · pixel reported ${num(m.purch)}</div></div>
+      <div class="score"><div class="v">${usd(p.shop.revenue, 0)}</div><div class="l">Store revenue</div><div class="h">${p.shop.orders ? usd(p.shop.aov, 0) + " AOV" : "No store orders"}</div></div>
+      <div class="score"><div class="v">${p.cpa == null ? "—" : usd(p.cpa, 0)}</div><div class="l">CPA</div><div class="h">Paid media spend / Shopify store orders</div></div>
+      <div class="score"><div class="v">${p.roas.toFixed(2)}x</div><div class="l">Blended ROAS</div><div class="h">Shopify store revenue / paid media spend</div></div>
     </div>
+    ${shopifyOrdersTable(p.shop.list)}
     ${monthInsightsHtml()}
     ${ugcInsightHtml()}
     ${DATA.google ? `<div class="insight wide" style="margin-top:16px">
@@ -897,7 +972,7 @@ $("exportBtn").onclick = () => {
   a.click();
 };
 
-fetch("data/snapshot.json?v=20260916c")
+fetch("data/snapshot.json?v=20260916d")
   .then((r) => r.json())
   .then((json) => {
     DATA = json;

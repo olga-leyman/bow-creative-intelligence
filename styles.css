@@ -261,6 +261,7 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
 tr:hover td { background: #f3eee4; }
 tr.selected td { background: var(--green); }
 tr { cursor: pointer; }
+table.plain tr { cursor: default; }
 
 .ad-cell { display: flex; gap: 10px; align-items: center; min-width: 220px; }
 .ad-cell img, .thumb {
