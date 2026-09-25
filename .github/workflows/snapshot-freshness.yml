@@ -1,0 +1,39 @@
+name: Snapshot freshness
+
+# Safety net: if the 6am PT refresh did not push a current snapshot, this check fails
+# so GitHub emails the repo. It does not pull ads itself — Ryze does that.
+on:
+  schedule:
+    - cron: "15 14 * * *" # 7:15am PT (PDT)
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fail if live dashboard is more than one day behind
+        run: |
+          python3 - <<'PY'
+          import json, urllib.request
+          from datetime import datetime, timedelta
+          from zoneinfo import ZoneInfo
+
+          url = "https://olga-leyman.github.io/bow-creative-intelligence/data/snapshot.json?v=%s" % datetime.now().timestamp()
+          req = urllib.request.Request(url, headers={"Cache-Control": "no-cache"})
+          with urllib.request.urlopen(req, timeout=30) as r:
+              snap = json.loads(r.read().decode())
+          max_date = snap.get("meta", {}).get("maxDate") or ""
+          pulled = snap.get("meta", {}).get("pulled") or ""
+          today = datetime.now(ZoneInfo("America/Los_Angeles")).date()
+          yesterday = today - timedelta(days=1)
+          print("live maxDate", max_date, "pulled", pulled, "today PT", today)
+          if not max_date:
+              raise SystemExit("Live snapshot has no meta.maxDate")
+          latest = datetime.fromisoformat(max_date).date()
+          if latest < yesterday:
+              raise SystemExit(
+                  f"Dashboard is stale: live maxDate={max_date} pulled={pulled}. "
+                  "The 6am PT Ryze job did not publish. Re-run the Body of Work daily refresh."
+              )
+          print("ok")
+          PY
