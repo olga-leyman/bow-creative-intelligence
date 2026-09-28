@@ -1123,7 +1123,7 @@ $("exportBtn").onclick = () => {
   a.click();
 };
 
-fetch("data/snapshot.json?v=20260927a")
+fetch("data/snapshot.json?v=20260928a")
   .then((r) => r.json())
   .then((json) => {
     DATA = json;
