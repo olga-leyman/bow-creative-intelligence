@@ -1,0 +1,22 @@
+{
+  "120250078914030753": {"kind": "video", "src": "media/ugc-1.1.mp4"},
+  "120250058080340753": {"kind": "video", "src": "media/ugc-1.2.mp4"},
+  "120250121210810753": {"kind": "video", "src": "media/ugc-1.3.mp4"},
+  "120250211563400753": {"kind": "video", "src": "media/ugc-1.5.mp4"},
+  "120250078914070753": {"kind": "video", "src": "media/founder-2.1.mp4"},
+  "120250121210660753": {"kind": "video", "src": "media/founder-2.2.mp4"},
+  "120250058080300753": {"kind": "video", "src": "media/founder-2.3.mp4"},
+  "120250211580720753": {"kind": "video", "src": "media/founder-2.5.mp4"},
+  "120250058080610753": {"kind": "video", "src": "media/science-3.1.mp4"},
+  "120250078914270753": {"kind": "video", "src": "media/science-3.3.mp4"},
+  "120250121211050753": {"kind": "video", "src": "media/science-3.4.mp4"},
+  "120250211581050753": {"kind": "video", "src": "media/science-3.5.mp4"},
+  "120250121210730753": {"kind": "video", "src": "media/beauty-4.1.mp4"},
+  "120250058080790753": {"kind": "video", "src": "media/beauty-4.4.mp4"},
+  "120250078914330753": {"kind": "video", "src": "media/wholeself-5.2.mp4"},
+  "120250058080950753": {"kind": "images", "urls": ["media/wholeself-5.4-1.png", "media/wholeself-5.4-2.png", "media/wholeself-5.4-3.png"]},
+  "120250121210610753": {"kind": "images", "urls": ["media/wholeself-5.5.png"]},
+  "120250211581130753": {"kind": "images", "urls": ["media/wholeself-5.3.png"]},
+  "120250078914230753": {"kind": "images", "urls": ["media/beauty-4.3-1.png", "media/beauty-4.3-2.png", "media/beauty-4.3-3.png", "media/beauty-4.3-4.png"]},
+  "120250211580840753": {"kind": "images", "urls": ["media/beauty-4.5.png"]}
+}
