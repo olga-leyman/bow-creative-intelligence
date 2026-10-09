@@ -2497,7 +2497,7 @@ $("exportBtn").onclick = () => {
 };
 
 Promise.all([
-  fetch("data/snapshot.json?v=20261008c").then((r) => r.json()),
+  fetch("data/snapshot.json?v=20261009a").then((r) => r.json()),
   fetch("data/previews.json?v=20260930b").then((r) => r.json()).catch(() => ({})),
   fetch("data/waves.json?v=20261007b").then((r) => r.json()),
   fetch("data/wave-previews.json?v=20261007b").then((r) => r.json()),
