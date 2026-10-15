@@ -2330,6 +2330,7 @@ function pageCreative() {
     ["w2", "Wave 2"],
     ["w3", "Wave 3"],
     ["w4", "Wave 4"],
+    ["w5", "Wave 5"],
   ];
   const visible = selected === "all" ? WAVES.waves : WAVES.waves.filter((wave) => wave.id === selected);
   return `
@@ -2339,7 +2340,7 @@ function pageCreative() {
       ${chips.map(([id, label]) => `<button class="chip ${selected === id ? "active" : ""}" data-twave="${id}">${label}</button>`).join("")}
     </div>
     ${visible.map(waveTable).join("")}
-    <p class="caption">25 Sep – 7 Oct. ${WAVES.source}</p>
+    <p class="caption">Waves 1–4 are 25 Sep – 7 Oct. Wave 5 is 10 Oct through the morning of 15 Oct. ${WAVES.source}</p>
   `;
 }
 
@@ -2389,6 +2390,7 @@ function pageRetention() {
     ["w2", "Wave 2"],
     ["w3", "Wave 3"],
     ["w4", "Wave 4"],
+    ["w5", "Wave 5"],
   ];
   const visible = selected === "all" ? WAVES.waves : WAVES.waves.filter((wave) => wave.id === selected);
   return `
@@ -2398,7 +2400,7 @@ function pageRetention() {
       ${chips.map(([id, label]) => `<button class="chip ${selected === id ? "active" : ""}" data-vwave="${id}">${label}</button>`).join("")}
     </div>
     ${visible.map(videoTable).join("")}
-    <p class="caption">25 Sep – 7 Oct. Meta video metrics. A cell stays blank when Meta did not return that number.</p>
+    <p class="caption">Waves 1–4 are 25 Sep – 7 Oct. Wave 5 is 10 Oct through the morning of 15 Oct. A cell stays blank when Meta did not return that number.</p>
   `;
 }
 
@@ -2530,9 +2532,9 @@ $("exportBtn").onclick = () => {
 Promise.all([
   fetch("data/snapshot.json?v=20261015a").then((r) => r.json()),
   fetch("data/previews.json?v=20260930b").then((r) => r.json()).catch(() => ({})),
-  fetch("data/waves.json?v=20261007b").then((r) => r.json()),
+  fetch("data/waves.json?v=20261015f").then((r) => r.json()),
   fetch("data/wave-previews.json?v=20261007b").then((r) => r.json()),
-  fetch("data/wave-media.json?v=20261007f").then((r) => r.json()),
+  fetch("data/wave-media.json?v=20261015f").then((r) => r.json()),
 ])
   .then(([json, previews, waves, wavePreviews, waveMedia]) => {
     DATA = json;
