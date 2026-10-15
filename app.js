@@ -2119,13 +2119,50 @@ function pageWeek() {
     <div class="insight wide">
       <div class="k">The purchases</div>
       <h3>Whole Self did three of the five purchases. Two other ads bought once each.</h3>
-      <ul>
-        <li>Whole Self 5.3 on the scale campaign: ${usd(182.96)}, 1 purchase, ${usd(34)}.</li>
-        <li>Whole Self M2 5.4 in the optimizer: ${usd(177.76)}, 2 purchases, ${usd(78.20)}. About ${usd(88.88)} each. The rest of that campaign spent ${usd(365.94)} and did not purchase.</li>
-        <li>Wave 4 Founder 2.5: ${usd(156.52)}, 1 purchase, ${usd(34)}. Wave 4 in total is ${usd(567.91)}. The other Wave 4 ads spent and did not purchase.</li>
-        <li>Wave 5 Beauty 4.2 carousel: ${usd(66.40)}, 1 purchase, ${usd(23)}. Wave 5 in total is ${usd(597.40)}. The other Wave 5 ads spent and did not purchase.</li>
-        <li>UGC retargeting spent ${usd(44.22)} and did not purchase.</li>
-      </ul>
+      <div class="buy-list">
+        <article class="buy-card">
+          <div class="buy-shots"><img src="media/week-5.3.jpg" alt="Whole Self 5.3"></div>
+          <div>
+            <div class="name">Whole Self 5.3, scale campaign</div>
+            <p class="copy">Most multivitamins are made for “everyone.” We created something more personalized — a daily multi made to fill the most common nutrient gaps for women in their 20s and 30s.</p>
+            <p class="stat">${usd(182.96)}, 1 purchase, ${usd(34)}.</p>
+          </div>
+        </article>
+        <article class="buy-card">
+          <div class="buy-shots row">
+            <img src="media/week-5.4-1.jpg" alt="Whole Self M2 5.4, card 1">
+            <img src="media/week-5.4-2.jpg" alt="Whole Self M2 5.4, card 2">
+            <img src="media/week-5.4-3.jpg" alt="Whole Self M2 5.4, card 3">
+          </div>
+          <div>
+            <div class="name">Whole Self M2 5.4, optimizer</div>
+            <p class="copy">Some things you inherit from your mom. Your multivitamin doesn't have to be one of them.</p>
+            <p class="stat">${usd(177.76)}, 2 purchases, ${usd(78.20)}. About ${usd(88.88)} each. The rest of that campaign spent ${usd(365.94)} and did not purchase.</p>
+          </div>
+        </article>
+        <article class="buy-card">
+          <div class="buy-shots"><img src="media/week-founder-2.5.jpg" alt="Wave 4 Founder 2.5"></div>
+          <div>
+            <div class="name">Wave 4 Founder 2.5</div>
+            <p class="copy">More ingredients doesn't automatically mean a better multivitamin.</p>
+            <p class="stat">${usd(156.52)}, 1 purchase, ${usd(34)}. Wave 4 in total is ${usd(567.91)}. The other Wave 4 ads spent and did not purchase.</p>
+          </div>
+        </article>
+        <article class="buy-card">
+          <div class="buy-shots row">
+            <img src="media/week-beauty-4.2-1.jpg" alt="Wave 5 Beauty 4.2, card 1">
+            <img src="media/week-beauty-4.2-2.jpg" alt="Wave 5 Beauty 4.2, card 2">
+            <img src="media/week-beauty-4.2-3.jpg" alt="Wave 5 Beauty 4.2, card 3">
+          </div>
+          <div>
+            <div class="name">Wave 5 Beauty 4.2 carousel</div>
+            <p class="copy">For once, cute packaging isn't the only reason I take this multivitamin. Two vanilla-coated tablets. That's the whole routine. Subscribe from $20/mo.</p>
+            <p class="stat">${usd(66.40)}, 1 purchase, ${usd(23)}. Wave 5 in total is ${usd(597.40)}. The other Wave 5 ads spent and did not purchase.</p>
+          </div>
+        </article>
+      </div>
+      <p>UGC retargeting spent ${usd(44.22)} and did not purchase.</p>
+      <p>A bunch of the ads are paused. We kept the ones that are producing purchases, and the lower budget right now means those purchases come through more slowly.</p>
     </div>
 
     <h2>Google</h2>
