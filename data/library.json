@@ -1,0 +1,1635 @@
+{
+  "pulled": "15 Oct 2026, afternoon",
+  "range": "18 Aug – 15 Oct 2026",
+  "note": "Today is still open, so the newest ads can move. Hook is people who reached 25% of the video, divided by impressions. Completion is people who reached the end, divided by plays. CTR is link clicks divided by impressions. CPC is spend divided by link clicks. A blank cell means Meta did not return that number.",
+  "rows": [
+    {
+      "id": "120249414674400753",
+      "name": "Clean Girl 4.1",
+      "month": "Month 1",
+      "test": "Concept test",
+      "concept": "Clean Girl",
+      "format": "Image",
+      "video": false,
+      "status": "Paused",
+      "title": "A multivitamin that works even better than it looks.",
+      "copy": "A daily multivitamin made for women in their 20s and 30s — clean ingredients, doctor-designed, and nutritionist-approved. Shop Body of Work.",
+      "poster": "media/library/posters/120249414674400753.jpg",
+      "media": {
+        "kind": "images",
+        "urls": [
+          "media/library/stills/4571265e2196a727cb80eb15304a4803.jpg"
+        ]
+      },
+      "reach": 3772,
+      "imps": 7257,
+      "link": 67,
+      "spend": 320.52,
+      "atc": 1,
+      "ic": 7,
+      "purch": 1
+    },
+    {
+      "id": "120249414671820753",
+      "name": "Social Proof 3.1",
+      "month": "Month 1",
+      "test": "Concept test",
+      "concept": "Social Proof",
+      "format": "Video",
+      "video": true,
+      "status": "Paused",
+      "title": "POV: your friend shows you her holy-grail multivitamin.",
+      "copy": "POV: your friend shows you her holy-grail multivitamin.\n\nBody of Work — the multi we actually stuck with. Doctor-designed for women in their 20s and 30s. 5-star reviews. As seen in Elle, WWD & Yahoo Health.",
+      "poster": "media/library/posters/120249414671820753.jpg",
+      "media": {
+        "kind": "image",
+        "urls": [
+          "media/library/posters/120249414671820753.jpg"
+        ]
+      },
+      "note": "Still from the video. The video file itself is not in this library.",
+      "reach": 4408,
+      "imps": 7746,
+      "link": 75,
+      "spend": 325.24,
+      "plays": 7662,
+      "p25": 233,
+      "p100": 78,
+      "atc": 1,
+      "ic": 4,
+      "purch": 1
+    },
+    {
+      "id": "120249414677460753",
+      "name": "Whole Self 5.3",
+      "month": "Month 1",
+      "test": "Concept test",
+      "concept": "Whole Self",
+      "format": "Carousel",
+      "video": false,
+      "status": "Paused",
+      "title": "Most multivitamins are made for “everyone.” We created something more personalized.",
+      "copy": "Most multivitamins are made for \"everyone\".\n\nWe created something more personalized — a daily multi made to fill the most common nutrient gaps for women in their 20s and 30s.",
+      "poster": "media/library/posters/120249414677460753.jpg",
+      "media": {
+        "kind": "images",
+        "urls": [
+          "media/library/stills/8a0362d455afdd46c76c61fe4ddb90f1.jpg",
+          "media/library/stills/47137959d2bdded90fc7cc37e9072fa2.jpg",
+          "media/library/stills/7ed30c2119fb55b53d2f630efcd7b3f8.jpg"
+        ]
+      },
+      "note": "This row is the Month 1 concept test only. The same carousel later ran in scale on two ads. Those are not added here, because reach cannot be added. Together the scale ads spent $2,001.12, with 13 purchases and $272.95 in purchase value.",
+      "reach": 18163,
+      "imps": 29603,
+      "link": 255,
+      "spend": 1394.78,
+      "atc": 18,
+      "ic": 45,
+      "purch": 8
+    },
+    {
+      "id": "120249414668100753",
+      "name": "Beauty Bestie 1.1",
+      "month": "Month 1",
+      "test": "Concept test",
+      "concept": "Beauty Bestie",
+      "format": "Video",
+      "video": true,
+      "status": "Paused",
+      "title": "The multivitamin that belongs in my beauty routine.",
+      "copy": "Body of Work is doctor-designed for women in their 20s and 30s — with clinically dosed biotin for stronger nails and decaffeinated green tea to support healthy skin from the inside out.* Two tiny vanilla-coated tablets. Sugar-free.",
+      "poster": "media/library/posters/120249414668100753.jpg",
+      "media": {
+        "kind": "image",
+        "urls": [
+          "media/library/posters/120249414668100753.jpg"
+        ]
+      },
+      "note": "Still from the video. The video file itself is not in this library.",
+      "reach": 5547,
+      "imps": 12368,
+      "link": 99,
+      "spend": 511.67,
+      "plays": 12231,
+      "p25": 563,
+      "p100": 66,
+      "atc": 1,
+      "ic": 5,
+      "purch": 1
+    },
+    {
+      "id": "120249414675160753",
+      "name": "Clean Girl 4.3",
+      "month": "Month 1",
+      "test": "Concept test",
+      "concept": "Clean Girl",
+      "format": "Carousel",
+      "video": false,
+      "status": "Paused",
+      "title": "Wellness got complicated. We simplified it.",
+      "copy": "Out with the clutter. In with the one-step routine.\n\nBack to basics: selective nutrients at doses that work. Everything you need, nothing you don't.",
+      "poster": "media/library/posters/120249414675160753.jpg",
+      "media": {
+        "kind": "images",
+        "urls": [
+          "media/library/stills/74094ee4b34a02b8d00a673b4a3f4771.jpg",
+          "media/library/stills/57187ab2f658f7f8bbc596da3f2767bf.jpg",
+          "media/library/stills/6d1f072ad3ada6be518961e0d17edc53.jpg"
+        ]
+      },
+      "reach": 1865,
+      "imps": 2281,
+      "link": 21,
+      "spend": 70.83,
+      "atc": 1,
+      "ic": 3
+    },
+    {
+      "id": "120249414669530753",
+      "name": "Beauty Bestie 1.4",
+      "month": "Month 1",
+      "test": "Concept test",
+      "concept": "Beauty Bestie",
+      "format": "Carousel",
+      "video": false,
+      "status": "Paused",
+      "title": "The secret isn’t just biotin—it’s enough biotin.",
+      "copy": "Not every beauty multivitamin contains clinically studied levels of biotin. The result? Overpromising and underdelivering.\n\nBody of Work was designed with intentional doses so it actually—not just ingredient callouts—to supports healthy hair, skin, and nails.*",
+      "poster": "media/library/posters/120249414669530753.jpg",
+      "media": {
+        "kind": "images",
+        "urls": [
+          "media/library/stills/21ef149430c8af911e0c3ea8583aedec.jpg",
+          "media/library/stills/52b9847b2234984a2dc2bbb7083c052f.jpg",
+          "media/library/stills/5538ab535c5d0c2330aec43cb79fdc73.jpg"
+        ]
+      },
+      "reach": 1464,
+      "imps": 2054,
+      "link": 15,
+      "spend": 62.41,
+      "atc": 1,
+      "ic": 1
+    },
+    {
+      "id": "120249414671080753",
+      "name": "Hot Girl Wind Down 2.3",
+      "month": "Month 1",
+      "test": "Concept test",
+      "concept": "Hot Girl Wind Down",
+      "format": "Carousel",
+      "video": false,
+      "status": "Paused",
+      "title": "Water. Meds. Multi.",
+      "copy": "Same time every night.\n\nBody of Work is the one small thing I do for myself after a packed day — filling nutrient gaps so mood, energy, and focus don't fall off.*",
+      "poster": "media/library/posters/120249414671080753.jpg",
+      "media": {
+        "kind": "images",
+        "urls": [
+          "media/library/stills/951fe88876cf2b680720b3f2d6eafaf5.jpg",
+          "media/library/stills/823d1a8bcae4420d89c7f51f98ca84a1.jpg",
+          "media/library/stills/614cb52c9cb31c6b9bf345d360d663ef.jpg",
+          "media/library/stills/cf6fc4324e9ee81d0729a9cdccee69d5.jpg"
+        ]
+      },
+      "reach": 843,
+      "imps": 1094,
+      "link": 4,
+      "spend": 46.39
+    },
+    {
+      "id": "120249414677100753",
+      "name": "Whole Self 5.2",
+      "month": "Month 1",
+      "test": "Concept test",
+      "concept": "Whole Self",
+      "format": "Image",
+      "video": false,
+      "status": "Paused",
+      "title": "A multivitamin made for you.",
+      "copy": "Whole Self Care starts here. Or, is this technically the headline?) Personally do not like leading with this in general. If we included I think it should be more of a CTA at the end.\n\nDoctor- The first multivitamin was designed for women in their 20s and 30s. One daily habit for skin, mood, energy + more.*",
+      "poster": "media/library/posters/120249414677100753.jpg",
+      "media": {
+        "kind": "images",
+        "urls": [
+          "media/library/stills/9e387c31af70a9a1002472bd706e9d5e.jpg"
+        ]
+      },
+      "reach": 1085,
+      "imps": 1565,
+      "link": 12,
+      "spend": 46.24
+    },
+    {
+      "id": "120249414672050753",
+      "name": "Social Proof 3.2",
+      "month": "Month 1",
+      "test": "Concept test",
+      "concept": "Social Proof",
+      "format": "Image",
+      "video": false,
+      "status": "Paused",
+      "title": "The multivitamin that earned 5-star reviews for a reason.",
+      "copy": "The only supplement my friends swear by.\n\nBecause it actually works. Doctor-designed for women in their 20s and 30s. 5-star average reviews. As seen in Elle.\n\nFrom $20/mo →",
+      "poster": "media/library/posters/120249414672050753.jpg",
+      "media": {
+        "kind": "images",
+        "urls": [
+          "media/library/stills/b1363eb711f51b14f5dbdab9d1ca4ee6.jpg"
+        ]
+      },
+      "reach": 778,
+      "imps": 882,
+      "link": 3,
+      "spend": 32.75
+    },
+    {
+      "id": "120249414671230753",
+      "name": "Hot Girl Wind Down 2.4",
+      "month": "Month 1",
+      "test": "Concept test",
+      "concept": "Hot Girl Wind Down",
+      "format": "Carousel",
+      "video": false,
+      "status": "Paused",
+      "title": "Nightstand essentials that actually work harder.",
+      "copy": "One good habit before tomorrow begins.\n\nA multivitamin for daily support for your immune system, metabolism, mood, bones, skin, and nails.*",
+      "poster": "media/library/posters/120249414671230753.jpg",
+      "media": {
+        "kind": "images",
+        "urls": [
+          "media/library/stills/617c5b5447495bb831f849c385afb222.jpg",
+          "media/library/stills/cc9f4738c13258ddaf2d989886678a71.jpg",
+          "media/library/stills/58fbc0c6196c1e53d2d92e06b0fa70f1.jpg",
+          "media/library/stills/0c4eb75f98f4eda1001776d3a0e77dd1.jpg"
+        ]
+      },
+      "reach": 643,
+      "imps": 756,
+      "link": 8,
+      "spend": 24.33
+    },
+    {
+      "id": "120249414670200753",
+      "name": "Hot Girl Wind Down 2.1",
+      "month": "Month 1",
+      "test": "Concept test",
+      "concept": "Hot Girl Wind Down",
+      "format": "Video",
+      "video": true,
+      "status": "Paused",
+      "title": "My nightly non-negotiable.",
+      "copy": "My nightly non-negotiable.\n\nAfter a long day, Body of Work fills the nutrient gaps most women in their 20s and 30s miss — including Vvitamin D for mood and choline for brain health.* Two tiny tablets. Done.",
+      "poster": "media/library/posters/120249414670200753.jpg",
+      "media": {
+        "kind": "image",
+        "urls": [
+          "media/library/posters/120249414670200753.jpg"
+        ]
+      },
+      "note": "Still from the video. The video file itself is not in this library.",
+      "reach": 611,
+      "imps": 729,
+      "link": 9,
+      "spend": 23.52,
+      "plays": 720,
+      "p25": 30,
+      "p100": 5
+    },
+    {
+      "id": "120249414676630753",
+      "name": "Whole Self 5.1",
+      "month": "Month 1",
+      "test": "Concept test",
+      "concept": "Whole Self",
+      "format": "Video",
+      "video": true,
+      "status": "Paused",
+      "title": "Built for women in their 20s and 30s—finally.",
+      "copy": "Built for women in their 20s and 30s — finally.\n\nBody of Work's multivitamin is formulated for you. Doctor-designed. for young women. Routine-approved. One step for skin, mood, energy, and more.* Whole Self Care(R) starts here.",
+      "poster": "media/library/posters/120249414676630753.jpg",
+      "media": {
+        "kind": "image",
+        "urls": [
+          "media/library/posters/120249414676630753.jpg"
+        ]
+      },
+      "note": "Still from the video. The video file itself is not in this library.",
+      "reach": 783,
+      "imps": 933,
+      "link": 6,
+      "spend": 23.48,
+      "plays": 917,
+      "p25": 62,
+      "p100": 17
+    },
+    {
+      "id": "120249414670760753",
+      "name": "Hot Girl Wind Down 2.2",
+      "month": "Month 1",
+      "test": "Concept test",
+      "concept": "Hot Girl Wind Down",
+      "format": "Image",
+      "video": false,
+      "status": "Paused",
+      "title": "Tonight’s habit. Tomorrow’s head start.",
+      "copy": "Fill today's nutrient gaps before tomorrow starts.* Tonight't habit. Tomorrow's head start.\n\nTwo tiny vanilla-coated tablets. Gentle on your stomach. Supports mood, energy, and immunity so you can be your best tomorrow.*\n\nShop Body of Work →",
+      "poster": "media/library/posters/120249414670760753.jpg",
+      "media": {
+        "kind": "images",
+        "urls": [
+          "media/library/stills/f0aec99b85a0081fb39ecb0400ed175b.jpg"
+        ]
+      },
+      "reach": 408,
+      "imps": 438,
+      "link": 9,
+      "spend": 22.78
+    },
+    {
+      "id": "120249414674060753",
+      "name": "Social Proof 3.5",
+      "month": "Month 1",
+      "test": "Concept test",
+      "concept": "Social Proof",
+      "format": "Video",
+      "video": true,
+      "status": "Paused",
+      "title": "The reviews say it better than we ever could.",
+      "copy": "The reviews say it better than we ever could!\n\nEasy to take. Gentle on your stomach. One simple daily habit designed to support skin, mood, energy, and more.* Doctor-designed for women in their 20s and 30s.\n\nShop Body of Work →",
+      "poster": "media/library/posters/120249414674060753.jpg",
+      "media": {
+        "kind": "image",
+        "urls": [
+          "media/library/posters/120249414674060753.jpg"
+        ]
+      },
+      "note": "Still from the video. The video file itself is not in this library.",
+      "reach": 1147,
+      "imps": 1541,
+      "link": 15,
+      "spend": 22.51,
+      "plays": 1514,
+      "p25": 32,
+      "p100": 22
+    },
+    {
+      "id": "120249414672540753",
+      "name": "Social Proof 3.3",
+      "month": "Month 1",
+      "test": "Concept test",
+      "concept": "Social Proof",
+      "format": "Video",
+      "video": true,
+      "status": "Paused",
+      "title": "The only supplement in the group chat.",
+      "copy": "Ok but what multi do you actually take? She never told anyone about your situationship with your TA back in college. So when she says this multivitamin is a must, believe her.\n\nBody of Work. Doctor-designed for women in their 20s and 30s. Friends + 5-star reviews agree — a multivitamin that actually works.*",
+      "poster": "media/library/posters/120249414672540753.jpg",
+      "media": {
+        "kind": "image",
+        "urls": [
+          "media/library/posters/120249414672540753.jpg"
+        ]
+      },
+      "note": "Still from the video. The video file itself is not in this library.",
+      "reach": 504,
+      "imps": 554,
+      "link": 6,
+      "spend": 13.03,
+      "plays": 538,
+      "p25": 23,
+      "p100": 12
+    },
+    {
+      "id": "120249414669720753",
+      "name": "Beauty Bestie 1.5",
+      "month": "Month 1",
+      "test": "Concept test",
+      "concept": "Beauty Bestie",
+      "format": "Image",
+      "video": false,
+      "status": "Paused",
+      "title": "Less wishful thinking, more science.",
+      "copy": "Less wishful thinking, more science.\n\nNot just another beauty multivitamin. Clinically dosed biotin plus decaffeinated green tea extract support healthy skin from the inside out.*",
+      "poster": "media/library/posters/120249414669720753.jpg",
+      "media": {
+        "kind": "images",
+        "urls": [
+          "media/library/stills/9bb63d74cfde5239f8901fd73200ce4a.jpg"
+        ]
+      },
+      "reach": 436,
+      "imps": 503,
+      "link": 2,
+      "spend": 8.34
+    },
+    {
+      "id": "120249414673210753",
+      "name": "Social Proof 3.4",
+      "month": "Month 1",
+      "test": "Concept test",
+      "concept": "Social Proof",
+      "format": "Video",
+      "video": true,
+      "status": "Paused",
+      "title": "Backed by experts. Built for women.",
+      "copy": "Body of Work was created alongside female OBGYNs, dermatologists, and nutritionists because women in their 20s and 30s deserve more than a one-size-fits-all multivitamin. Thoughtfully formulated to support skin, mood, energy, and more.*",
+      "poster": "media/library/posters/120249414673210753.jpg",
+      "media": {
+        "kind": "image",
+        "urls": [
+          "media/library/posters/120249414673210753.jpg"
+        ]
+      },
+      "note": "Still from the video. The video file itself is not in this library.",
+      "reach": 290,
+      "imps": 292,
+      "link": 2,
+      "spend": 8.23,
+      "plays": 287,
+      "p25": 12,
+      "p100": 9
+    },
+    {
+      "id": "120249414671470753",
+      "name": "Hot Girl Wind Down 2.5",
+      "month": "Month 1",
+      "test": "Concept test",
+      "concept": "Hot Girl Wind Down",
+      "format": "Image",
+      "video": false,
+      "status": "Paused",
+      "title": "Consistency > perfection.",
+      "copy": "Consistency > perfection.\n\nWellness doesn't have to mean overhauling your life. One daily multivitamin helps support immunity, metabolism, mood, bone health, skin, and nails, making it easy to care for yourself every day.*",
+      "poster": "media/library/posters/120249414671470753.jpg",
+      "media": {
+        "kind": "images",
+        "urls": [
+          "media/library/stills/3e3e31caf9b13f38064605b7e586ea2f.jpg"
+        ]
+      },
+      "reach": 385,
+      "imps": 420,
+      "link": 1,
+      "spend": 6.32
+    },
+    {
+      "id": "120249414668960753",
+      "name": "Beauty Bestie 1.3",
+      "month": "Month 1",
+      "test": "Concept test",
+      "concept": "Beauty Bestie",
+      "format": "Video",
+      "video": true,
+      "status": "Paused",
+      "title": "GRWM but make it self care.",
+      "copy": "GRWM but make it whole-self care.\n\nSkin, hair, and nails support*, one daily habit. Doctor-designed for women in their 20s and 30s.",
+      "poster": "media/library/posters/120249414668960753.jpg",
+      "media": {
+        "kind": "image",
+        "urls": [
+          "media/library/posters/120249414668960753.jpg"
+        ]
+      },
+      "note": "Still from the video. The video file itself is not in this library.",
+      "reach": 314,
+      "imps": 320,
+      "link": 4,
+      "spend": 5.79,
+      "plays": 313,
+      "p25": 21,
+      "p100": 6
+    },
+    {
+      "id": "120249414675500753",
+      "name": "Clean Girl 4.4",
+      "month": "Month 1",
+      "test": "Concept test",
+      "concept": "Clean Girl",
+      "format": "Image",
+      "video": false,
+      "status": "Paused",
+      "title": "Wellness, without the guesswork.",
+      "copy": "Whole self care, zero clutter.\n\nLess hype. More science.\n\nBody of Work puts o Only selective, research-backed nutrients in the jar — plus biotin & decaffeinated green tea extract for healthy hair, skin, and nails.* Third-party tested for purity. No fillers.",
+      "poster": "media/library/posters/120249414675500753.jpg",
+      "media": {
+        "kind": "images",
+        "urls": [
+          "media/library/stills/d17246e9de5e7b46815c37d18f0ee3ec.jpg"
+        ]
+      },
+      "reach": 281,
+      "imps": 306,
+      "link": 3,
+      "spend": 5.36
+    },
+    {
+      "id": "120249414678050753",
+      "name": "Whole Self 5.4",
+      "month": "Month 1",
+      "test": "Concept test",
+      "concept": "Whole Self",
+      "format": "Image",
+      "video": false,
+      "status": "Paused",
+      "title": "Most multivitamins are made for “everyone.” We created something more personalized.",
+      "copy": "Most multis are made for everyone. We created something specifically for women in their 20s and 30s.\n\nBody of Work is doctor-designed for women in their 20s and 30s with targeted nutrients to support skin, mood, energy, and more.* Everything you need. Nothing you don't.",
+      "poster": "media/library/posters/120249414678050753.jpg",
+      "media": {
+        "kind": "images",
+        "urls": [
+          "media/library/stills/1e06bde6248f7e0332f6e682bb0ab729.jpg"
+        ]
+      },
+      "reach": 188,
+      "imps": 211,
+      "link": 2,
+      "spend": 3.54
+    },
+    {
+      "id": "120249414675920753",
+      "name": "Clean Girl 4.5",
+      "month": "Month 1",
+      "test": "Concept test",
+      "concept": "Clean Girl",
+      "format": "Carousel",
+      "video": false,
+      "status": "Paused",
+      "title": "Stop collecting supplements. Start a simpler routine.",
+      "copy": "Wellness, without the guesswork.\n\nWe already obsessed over the formula, so you don't have to. Thoughtfully selected ingredients. Nothing unnecessary. Dosed at levels that actually work.",
+      "poster": "media/library/posters/120249414675920753.jpg",
+      "media": {
+        "kind": "images",
+        "urls": [
+          "media/library/stills/1fd9bd5a6804e672a4dfea837130af6e.jpg",
+          "media/library/stills/ecdc974f9d90dc96a5b5e6e14bed5b22.jpg",
+          "media/library/stills/c00db6c634cc58920157570afd7f66cb.jpg"
+        ]
+      },
+      "reach": 58,
+      "imps": 67,
+      "link": 0,
+      "spend": 2.08
+    },
+    {
+      "id": "120249414678420753",
+      "name": "Whole Self 5.5",
+      "month": "Month 1",
+      "test": "Concept test",
+      "concept": "Whole Self",
+      "format": "Image",
+      "video": false,
+      "status": "Paused",
+      "title": "Your life isn’t one-size-fits-all. Your multivitamin shouldn’t be either.",
+      "copy": "Your life isn't one-size-fits-all. Your multivitamin shouldn't be either.\n\nBody of Work is made specifically for women in their 20s and 30s with intentional ingredients that support your whole self.*",
+      "poster": "media/library/posters/120249414678420753.jpg",
+      "media": {
+        "kind": "images",
+        "urls": [
+          "media/library/stills/6698a0b209a5ae0ad9f2483cb11a41bc.jpg"
+        ]
+      },
+      "reach": 77,
+      "imps": 81,
+      "link": 0,
+      "spend": 1.65
+    },
+    {
+      "id": "120249414674920753",
+      "name": "Clean Girl 4.2",
+      "month": "Month 1",
+      "test": "Concept test",
+      "concept": "Clean Girl",
+      "format": "Image",
+      "video": false,
+      "status": "Paused",
+      "title": "Celebrate better ingredients.",
+      "copy": "A multi that works even better than it looks.\n\nThird-party tested. Doctor-designed for women in their 20s and 30s. Selective nutrients to support energy, mood, skin and more.* No sugar, no junk. Everything you need, nothing you don't.",
+      "poster": "media/library/posters/120249414674920753.jpg",
+      "media": {
+        "kind": "images",
+        "urls": [
+          "media/library/stills/b1e47d5f28c4fe090847f73af61a79af.jpg"
+        ]
+      },
+      "reach": 58,
+      "imps": 61,
+      "link": 0,
+      "spend": 1.18
+    },
+    {
+      "id": "120249414668420753",
+      "name": "Beauty Bestie 1.2",
+      "month": "Month 1",
+      "test": "Concept test",
+      "concept": "Beauty Bestie",
+      "format": "Image",
+      "video": false,
+      "status": "Paused",
+      "title": "A beauty routine non-negotiable.",
+      "copy": "This is the one step I don't skip.\n\nClinically dosed biotin plus decaffeinated green tea support healthy hair, skin, and nails* in two tiny vanilla-coated tablets. Doctor-designed for women in their 20s and 30s.",
+      "poster": "media/library/posters/120249414668420753.jpg",
+      "media": {
+        "kind": "images",
+        "urls": [
+          "media/library/stills/a8a3adc3850c5ac04d9ce805762d462b.jpg"
+        ]
+      },
+      "reach": 52,
+      "imps": 55,
+      "link": 0,
+      "spend": 1.03
+    },
+    {
+      "id": "120250058080610753",
+      "name": "Science 3.1",
+      "month": "Month 2",
+      "test": "Wave 1",
+      "concept": "Science",
+      "format": "Video",
+      "video": true,
+      "status": "Ad issue",
+      "title": "See the 11",
+      "copy": "More ingredients isn't a better multivitamin.",
+      "poster": "media/library/posters/120250058080610753.jpg",
+      "media": {
+        "kind": "video",
+        "src": "media/science-3.1.mp4"
+      },
+      "reach": 1390,
+      "imps": 2303,
+      "link": 39,
+      "spend": 277.0,
+      "plays": 2097,
+      "p25": 148,
+      "p100": 33,
+      "atc": 7,
+      "ic": 8,
+      "purch": 1,
+      "value": 2.99
+    },
+    {
+      "id": "120250058080950753",
+      "name": "Whole Self 5.4",
+      "month": "Month 2",
+      "test": "Wave 1",
+      "concept": "Whole Self",
+      "format": "Carousel",
+      "video": false,
+      "status": "Paused",
+      "copy": "Some things you inherit from your mom.",
+      "poster": "media/library/posters/120250058080950753.jpg",
+      "media": {
+        "kind": "images",
+        "urls": [
+          "media/wholeself-5.4-1.png",
+          "media/wholeself-5.4-2.png",
+          "media/wholeself-5.4-3.png"
+        ]
+      },
+      "reach": 770,
+      "imps": 1043,
+      "link": 10,
+      "spend": 56.25,
+      "ic": 1
+    },
+    {
+      "id": "120250058080340753",
+      "name": "UGC 1.2",
+      "month": "Month 2",
+      "test": "Wave 1",
+      "concept": "UGC",
+      "format": "Video",
+      "video": true,
+      "status": "Paused",
+      "copy": "I wanted the convenience of gummies without all the sugar.",
+      "poster": "media/library/posters/120250058080340753.jpg",
+      "media": {
+        "kind": "video",
+        "src": "media/ugc-1.2.mp4"
+      },
+      "reach": 479,
+      "imps": 667,
+      "link": 12,
+      "spend": 52.46,
+      "plays": 609,
+      "p25": 56,
+      "p100": 9,
+      "atc": 1
+    },
+    {
+      "id": "120250058080300753",
+      "name": "Founder 2.3",
+      "month": "Month 2",
+      "test": "Wave 1",
+      "concept": "Founder",
+      "format": "Video",
+      "video": true,
+      "status": "Paused",
+      "copy": "We couldn't find the multivitamin we wanted for women our age. So we made it.",
+      "poster": "media/library/posters/120250058080300753.jpg",
+      "media": {
+        "kind": "video",
+        "src": "media/founder-2.3.mp4"
+      },
+      "reach": 380,
+      "imps": 527,
+      "link": 12,
+      "spend": 43.95,
+      "plays": 486,
+      "p25": 62,
+      "p100": 13,
+      "atc": 4,
+      "ic": 7
+    },
+    {
+      "id": "120250058080790753",
+      "name": "Beauty Bestie 4.4",
+      "month": "Month 2",
+      "test": "Wave 1",
+      "concept": "Beauty Bestie",
+      "format": "Video",
+      "video": true,
+      "status": "Paused",
+      "title": "Shop Body of Work",
+      "copy": "My easiest beauty step takes about five seconds.",
+      "poster": "media/library/posters/120250058080790753.jpg",
+      "media": {
+        "kind": "video",
+        "src": "media/beauty-4.4.mp4"
+      },
+      "reach": 356,
+      "imps": 499,
+      "link": 5,
+      "spend": 43.2,
+      "plays": 450,
+      "p25": 45,
+      "p100": 5
+    },
+    {
+      "id": "120250078914070753",
+      "name": "Founder 2.1",
+      "month": "Month 2",
+      "test": "Wave 2",
+      "concept": "Founder",
+      "format": "Video",
+      "video": true,
+      "status": "Paused",
+      "copy": "After years of building vitamins for other brands.",
+      "poster": "media/library/posters/120250078914070753.jpg",
+      "media": {
+        "kind": "video",
+        "src": "media/founder-2.1.mp4"
+      },
+      "reach": 1661,
+      "imps": 2418,
+      "link": 31,
+      "spend": 285.72,
+      "plays": 2158,
+      "p25": 148,
+      "p100": 49,
+      "atc": 1,
+      "ic": 11,
+      "purch": 1
+    },
+    {
+      "id": "120250078914330753",
+      "name": "Whole Self 5.2",
+      "month": "Month 2",
+      "test": "Wave 2",
+      "concept": "Whole Self",
+      "format": "Video",
+      "video": true,
+      "status": "Paused",
+      "copy": "Your routine grew up. Your multivitamin can, too.",
+      "poster": "media/library/posters/120250078914330753.jpg",
+      "media": {
+        "kind": "video",
+        "src": "media/wholeself-5.2.mp4"
+      },
+      "reach": 910,
+      "imps": 1342,
+      "link": 13,
+      "spend": 126.72,
+      "plays": 1197,
+      "p25": 124,
+      "p100": 27,
+      "ic": 1
+    },
+    {
+      "id": "120250078914030753",
+      "name": "UGC 1.1",
+      "month": "Month 2",
+      "test": "Wave 2",
+      "concept": "UGC",
+      "format": "Video",
+      "video": true,
+      "status": "Paused",
+      "copy": "For the girls who have never been vitamin girls.",
+      "poster": "media/library/posters/120250078914030753.jpg",
+      "media": {
+        "kind": "video",
+        "src": "media/ugc-1.1.mp4"
+      },
+      "reach": 798,
+      "imps": 1046,
+      "link": 14,
+      "spend": 125.1,
+      "plays": 918,
+      "p25": 67,
+      "p100": 13,
+      "ic": 3
+    },
+    {
+      "id": "120250078914270753",
+      "name": "Science 3.3",
+      "month": "Month 2",
+      "test": "Wave 2",
+      "concept": "Science",
+      "format": "Video",
+      "video": true,
+      "status": "Paused",
+      "copy": "With biotin, the number actually matters.",
+      "poster": "media/library/posters/120250078914270753.jpg",
+      "media": {
+        "kind": "video",
+        "src": "media/science-3.3.mp4"
+      },
+      "reach": 904,
+      "imps": 1253,
+      "link": 15,
+      "spend": 124.41,
+      "plays": 1153,
+      "p25": 109,
+      "p100": 23,
+      "atc": 1
+    },
+    {
+      "id": "120250078914230753",
+      "name": "Beauty Bestie 4.3",
+      "month": "Month 2",
+      "test": "Wave 2",
+      "concept": "Beauty Bestie",
+      "format": "Carousel",
+      "video": false,
+      "status": "Paused",
+      "copy": "Seeing biotin on the label isn't the same as getting an effective dose.",
+      "poster": "media/library/posters/120250078914230753.jpg",
+      "media": {
+        "kind": "images",
+        "urls": [
+          "media/beauty-4.3-1.png",
+          "media/beauty-4.3-2.png",
+          "media/beauty-4.3-3.png",
+          "media/beauty-4.3-4.png"
+        ]
+      },
+      "reach": 1567,
+      "imps": 2096,
+      "link": 37,
+      "spend": 121.29,
+      "ic": 1
+    },
+    {
+      "id": "120250121210660753",
+      "name": "Founder 2.2",
+      "month": "Month 2",
+      "test": "Wave 3",
+      "concept": "Founder",
+      "format": "Video",
+      "video": true,
+      "status": "Paused",
+      "copy": "The world has enough gummy vitamins.",
+      "poster": "media/library/posters/120250121210660753.jpg",
+      "media": {
+        "kind": "video",
+        "src": "media/founder-2.2.mp4"
+      },
+      "reach": 664,
+      "imps": 934,
+      "link": 19,
+      "spend": 112.97,
+      "plays": 805,
+      "p25": 65,
+      "p100": 20
+    },
+    {
+      "id": "120250121211050753",
+      "name": "Science 3.4",
+      "month": "Month 2",
+      "test": "Wave 3",
+      "concept": "Science",
+      "format": "Video",
+      "video": true,
+      "status": "Paused",
+      "copy": "What we leave out matters, too.",
+      "poster": "media/library/posters/120250121211050753.jpg",
+      "media": {
+        "kind": "video",
+        "src": "media/science-3.4.mp4"
+      },
+      "reach": 669,
+      "imps": 1132,
+      "link": 9,
+      "spend": 111.19,
+      "plays": 974,
+      "p25": 97,
+      "p100": 13,
+      "ic": 1
+    },
+    {
+      "id": "120250121210810753",
+      "name": "UGC 1.3",
+      "month": "Month 2",
+      "test": "Wave 3",
+      "concept": "UGC",
+      "format": "Video",
+      "video": true,
+      "status": "Paused",
+      "copy": "Your multivitamin can grow up with you, too.",
+      "poster": "media/library/posters/120250121210810753.jpg",
+      "media": {
+        "kind": "video",
+        "src": "media/ugc-1.3.mp4"
+      },
+      "reach": 716,
+      "imps": 1010,
+      "link": 14,
+      "spend": 111.07,
+      "plays": 929,
+      "p25": 77,
+      "p100": 18,
+      "atc": 1
+    },
+    {
+      "id": "120250121210610753",
+      "name": "Whole Self 5.5",
+      "month": "Month 2",
+      "test": "Wave 3",
+      "concept": "Whole Self",
+      "format": "Image",
+      "video": false,
+      "status": "Paused",
+      "copy": "You've tried enough wellness routines.",
+      "poster": "media/library/posters/120250121210610753.jpg",
+      "media": {
+        "kind": "images",
+        "urls": [
+          "media/wholeself-5.5.png"
+        ]
+      },
+      "reach": 870,
+      "imps": 1278,
+      "link": 14,
+      "spend": 104.52
+    },
+    {
+      "id": "120250121210730753",
+      "name": "Beauty Bestie 4.1",
+      "month": "Month 2",
+      "test": "Wave 3",
+      "concept": "Beauty Bestie",
+      "format": "Video",
+      "video": true,
+      "status": "Paused",
+      "copy": "The beauty step I actually remember every day.",
+      "poster": "media/library/posters/120250121210730753.jpg",
+      "media": {
+        "kind": "video",
+        "src": "media/beauty-4.1.mp4"
+      },
+      "reach": 428,
+      "imps": 562,
+      "link": 5,
+      "spend": 37.95,
+      "plays": 491,
+      "p25": 47,
+      "p100": 3,
+      "atc": 2,
+      "ic": 1
+    },
+    {
+      "id": "120250255534000753",
+      "name": "Beauty 4.2",
+      "month": "Month 2",
+      "test": "Wave 5",
+      "concept": "Beauty Bestie",
+      "format": "Carousel",
+      "video": false,
+      "status": "Ad issue",
+      "title": "Subscribe from $20/mo",
+      "copy": "For once, cute packaging isn't the only reason I take this multivitamin.",
+      "poster": "media/library/posters/120250255534000753.jpg",
+      "media": {
+        "kind": "images",
+        "urls": [
+          "media/w5-beauty-4.2-1.jpg",
+          "media/w5-beauty-4.2-2.jpg",
+          "media/w5-beauty-4.2-3.jpg"
+        ]
+      },
+      "reach": 1362,
+      "imps": 1574,
+      "link": 11,
+      "spend": 72.19,
+      "atc": 1,
+      "ic": 4,
+      "purch": 1,
+      "value": 23
+    },
+    {
+      "id": "120250255593000753",
+      "name": "Whole Self 5.5-1",
+      "month": "Month 2",
+      "test": "Wave 5",
+      "concept": "Whole Self",
+      "format": "Image",
+      "video": false,
+      "status": "Ad issue",
+      "title": "Shop Body of Work",
+      "copy": "Your wellness routine has been through a few phases. This one's made to stick.",
+      "poster": "media/library/posters/120250255593000753.jpg",
+      "media": {
+        "kind": "images",
+        "urls": [
+          "media/w5-wholeself-5.5.jpg"
+        ]
+      },
+      "reach": 988,
+      "imps": 1140,
+      "link": 19,
+      "spend": 61.82
+    },
+    {
+      "id": "120250257170240753",
+      "name": "Whole Self 5.6",
+      "month": "Month 2",
+      "test": "Wave 5",
+      "concept": "Whole Self",
+      "format": "Video",
+      "video": true,
+      "status": "Ad issue",
+      "title": "Shop Body of Work",
+      "copy": "POV: you're still buying the same multivitamin you took in college.",
+      "poster": "media/library/posters/120250257170240753.jpg",
+      "media": {
+        "kind": "video",
+        "src": "media/w5-wholeself-5.6.mp4"
+      },
+      "reach": 749,
+      "imps": 872,
+      "link": 9,
+      "spend": 59.32,
+      "ic": 1,
+      "plays": 816,
+      "p25": 81,
+      "p100": 20
+    },
+    {
+      "id": "120250255676520753",
+      "name": "Founder 2.5 Clean Label",
+      "month": "Month 2",
+      "test": "Wave 5",
+      "concept": "Founder",
+      "format": "Video",
+      "video": true,
+      "status": "Ad issue",
+      "title": "Shop Body of Work",
+      "copy": "If it's in the tablet, it earned its place.",
+      "poster": "media/library/posters/120250255676520753.jpg",
+      "media": {
+        "kind": "video",
+        "src": "media/w5-founder-2.5-clean.mp4"
+      },
+      "reach": 531,
+      "imps": 683,
+      "link": 12,
+      "spend": 58.88,
+      "plays": 618,
+      "p25": 21,
+      "p100": 2
+    },
+    {
+      "id": "120250255543910753",
+      "name": "Whole Self 5.3",
+      "month": "Month 2",
+      "test": "Wave 5",
+      "concept": "Whole Self",
+      "format": "Image",
+      "video": false,
+      "status": "Ad issue",
+      "title": "Shop Body of Work",
+      "copy": "For the girls who don't want to take 12 supplements every morning.",
+      "poster": "media/library/posters/120250255543910753.jpg",
+      "media": {
+        "kind": "images",
+        "urls": [
+          "media/w5-wholeself-5.3.jpg"
+        ]
+      },
+      "reach": 895,
+      "imps": 1046,
+      "link": 18,
+      "spend": 57.89,
+      "ic": 1
+    },
+    {
+      "id": "120250255537800753",
+      "name": "Whole Self 5.1",
+      "month": "Month 2",
+      "test": "Wave 5",
+      "concept": "Whole Self",
+      "format": "Carousel",
+      "video": false,
+      "status": "Ad issue",
+      "title": "Shop Body of Work",
+      "copy": "Wait… are you still taking the same multivitamin you've always taken?",
+      "poster": "media/library/posters/120250255537800753.jpg",
+      "media": {
+        "kind": "images",
+        "urls": [
+          "media/w5-wholeself-5.1-1.jpg",
+          "media/w5-wholeself-5.1-2.jpg",
+          "media/w5-wholeself-5.1-3.jpg"
+        ]
+      },
+      "reach": 901,
+      "imps": 1075,
+      "link": 11,
+      "spend": 55.85
+    },
+    {
+      "id": "120250255665520753",
+      "name": "Founder 2.4",
+      "month": "Month 2",
+      "test": "Wave 5",
+      "concept": "Founder",
+      "format": "Video",
+      "video": true,
+      "status": "Ad issue",
+      "title": "Shop Body of Work",
+      "copy": "We recently showed up at Faces of Fitness in Chicago, and the response was kind of incredible.",
+      "poster": "media/library/posters/120250255665520753.jpg",
+      "media": {
+        "kind": "video",
+        "src": "media/w5-founder-2.4.mp4"
+      },
+      "reach": 516,
+      "imps": 610,
+      "link": 8,
+      "spend": 55.1,
+      "ic": 1,
+      "plays": 558,
+      "p25": 37,
+      "p100": 5
+    },
+    {
+      "id": "120250255649690753",
+      "name": "UGC 1.4",
+      "month": "Month 2",
+      "test": "Wave 5",
+      "concept": "UGC",
+      "format": "Video",
+      "video": true,
+      "status": "Ad issue",
+      "title": "Subscribe from $20/mo",
+      "copy": "Dining hall, late nights, and a multivitamin that actually fits my life.",
+      "poster": "media/library/posters/120250255649690753.jpg",
+      "media": {
+        "kind": "video",
+        "src": "media/w5-ugc-1.4.mp4"
+      },
+      "reach": 446,
+      "imps": 593,
+      "link": 10,
+      "spend": 52.56,
+      "plays": 544,
+      "p25": 56,
+      "p100": 10
+    },
+    {
+      "id": "120250257165120753",
+      "name": "Founder 2.5 Ingredient List",
+      "month": "Month 2",
+      "test": "Wave 5",
+      "concept": "Founder",
+      "format": "Video",
+      "video": true,
+      "status": "Paused",
+      "title": "Shop Body of Work",
+      "copy": "Read the ingredient list. Then decide.",
+      "poster": "media/library/posters/120250257165120753.jpg",
+      "media": {
+        "kind": "video",
+        "src": "media/w5-founder-2.5-ingredients.mp4"
+      },
+      "reach": 511,
+      "imps": 622,
+      "link": 5,
+      "spend": 49.4,
+      "plays": 582,
+      "p25": 20,
+      "p100": 8
+    },
+    {
+      "id": "120250255658650753",
+      "name": "UGC 1.5",
+      "month": "Month 2",
+      "test": "Wave 5",
+      "concept": "UGC",
+      "format": "Video",
+      "video": true,
+      "status": "Paused",
+      "title": "Subscribe from $20/mo",
+      "copy": "I ditched a 12-step routine for one multivitamin.",
+      "poster": "media/library/posters/120250255658650753.jpg",
+      "media": {
+        "kind": "video",
+        "src": "media/w5-ugc-1.5.mp4"
+      },
+      "reach": 367,
+      "imps": 433,
+      "link": 2,
+      "spend": 40.63,
+      "plays": 393,
+      "p25": 15,
+      "p100": 2
+    },
+    {
+      "id": "120250257167320753",
+      "name": "Science 3.2",
+      "month": "Month 2",
+      "test": "Wave 5",
+      "concept": "Science",
+      "format": "Video",
+      "video": true,
+      "status": "Paused",
+      "title": "Shop Body of Work",
+      "copy": "Most people read the vitamin name and skip the form it comes in. The form matters.",
+      "poster": "media/library/posters/120250257167320753.jpg",
+      "media": {
+        "kind": "video",
+        "src": "media/w5-science-3.2.mp4"
+      },
+      "reach": 617,
+      "imps": 724,
+      "link": 4,
+      "spend": 39.55,
+      "plays": 698,
+      "p25": 38,
+      "p100": 5
+    },
+    {
+      "id": "120250211580720753",
+      "name": "Founder 2.5",
+      "month": "Month 2",
+      "test": "Wave 4",
+      "concept": "Founder",
+      "format": "Video",
+      "video": true,
+      "status": "Live",
+      "title": "Precision, not excess",
+      "copy": "More ingredients doesn't automatically mean a better multivitamin.",
+      "poster": "media/library/posters/120250211580720753.jpg",
+      "media": {
+        "kind": "video",
+        "src": "media/founder-2.5.mp4"
+      },
+      "note": "Reach is the widest single copy. Clicks, spend, and video counts add the copies together.",
+      "reach": 963,
+      "imps": 3101,
+      "link": 22,
+      "spend": 306.84,
+      "plays": 2750,
+      "p25": 117,
+      "p100": 32,
+      "atc": 1,
+      "ic": 2,
+      "purch": 2,
+      "value": 34.0
+    },
+    {
+      "id": "120250211563400753",
+      "name": "UGC 1.5",
+      "month": "Month 2",
+      "test": "Wave 4",
+      "concept": "UGC",
+      "format": "Video",
+      "video": true,
+      "status": "Live",
+      "copy": "For the person who reads every supplement label.",
+      "poster": "media/library/posters/120250211563400753.jpg",
+      "media": {
+        "kind": "video",
+        "src": "media/ugc-1.5.mp4"
+      },
+      "note": "Reach is the widest single copy. Clicks, spend, and video counts add the copies together.",
+      "reach": 760,
+      "imps": 2077,
+      "link": 23,
+      "spend": 220.2,
+      "plays": 1846,
+      "p25": 144,
+      "p100": 30,
+      "atc": 1,
+      "ic": 3
+    },
+    {
+      "id": "120250211581050753",
+      "name": "Science 3.5",
+      "month": "Month 2",
+      "test": "Wave 4",
+      "concept": "Science",
+      "format": "Video",
+      "video": true,
+      "status": "Live",
+      "title": "Doctor-designed. $20/mo",
+      "copy": "We started with the research, not the marketing brief.",
+      "poster": "media/library/posters/120250211581050753.jpg",
+      "media": {
+        "kind": "video",
+        "src": "media/science-3.5.mp4"
+      },
+      "note": "Reach is the widest single copy. Clicks, spend, and video counts add the copies together.",
+      "reach": 1086,
+      "imps": 2317,
+      "link": 24,
+      "spend": 177.23,
+      "plays": 2086,
+      "p25": 110,
+      "p100": 23
+    },
+    {
+      "id": "120250211581130753",
+      "name": "Whole Self vitamins",
+      "month": "Month 2",
+      "test": "Wave 4",
+      "concept": "Whole Self",
+      "format": "Image",
+      "video": false,
+      "status": "Live",
+      "copy": "Your wellness routine doesn't need to take over your morning.",
+      "poster": "media/library/posters/120250211581130753.jpg",
+      "media": {
+        "kind": "images",
+        "urls": [
+          "media/wholeself-5.3.png"
+        ]
+      },
+      "note": "Reach is the widest single copy. Clicks, spend, and video counts add the copies together.",
+      "reach": 1024,
+      "imps": 3324,
+      "link": 35,
+      "spend": 192.88,
+      "atc": 1,
+      "ic": 2,
+      "purch": 1,
+      "value": 34.0
+    },
+    {
+      "id": "120250211580840753",
+      "name": "Beauty Bestie 4.5",
+      "month": "Month 2",
+      "test": "Wave 4",
+      "concept": "Beauty Bestie",
+      "format": "Image",
+      "video": false,
+      "status": "Live",
+      "copy": "Serums have their job. Your multivitamin has one, too.",
+      "poster": "media/library/posters/120250211580840753.jpg",
+      "media": {
+        "kind": "images",
+        "urls": [
+          "media/beauty-4.5.png"
+        ]
+      },
+      "note": "Reach is the widest single copy. Clicks, spend, and video counts add the copies together.",
+      "reach": 816,
+      "imps": 2041,
+      "link": 15,
+      "spend": 182.63,
+      "ic": 1
+    },
+    {
+      "id": "120249842708650753",
+      "name": "Julia 1",
+      "month": "Month 2",
+      "test": "UGC",
+      "concept": "UGC",
+      "format": "Video",
+      "video": true,
+      "status": "Paused",
+      "title": "Built for women in their 20s and 30s—finally.",
+      "copy": "Built for women in their 20s and 30s—finally. Doctor-designed Body of Work, told by a real customer. Shop the women’s multivitamin.",
+      "poster": "media/library/posters/120249842708650753.jpg",
+      "media": {
+        "kind": "image",
+        "urls": [
+          "media/library/posters/120249842708650753.jpg"
+        ]
+      },
+      "note": "Still from the creator video. The video file itself is not in this library.",
+      "reach": 29,
+      "imps": 30,
+      "link": 0,
+      "spend": 2.58,
+      "plays": 26,
+      "p25": 3
+    },
+    {
+      "id": "120249842708870753",
+      "name": "Julia 2",
+      "month": "Month 2",
+      "test": "UGC",
+      "concept": "UGC",
+      "format": "Video",
+      "video": true,
+      "status": "Paused",
+      "title": "Built for women in their 20s and 30s—finally.",
+      "copy": "Built for women in their 20s and 30s—finally. Doctor-designed Body of Work, told by a real customer. Shop the women’s multivitamin.",
+      "poster": "media/library/posters/120249842708870753.jpg",
+      "media": {
+        "kind": "image",
+        "urls": [
+          "media/library/posters/120249842708870753.jpg"
+        ]
+      },
+      "note": "Still from the creator video. The video file itself is not in this library.",
+      "reach": 5007,
+      "imps": 6743,
+      "link": 109,
+      "spend": 422.32,
+      "plays": 6302,
+      "p25": 266,
+      "p100": 32,
+      "atc": 13,
+      "ic": 26,
+      "purch": 2,
+      "value": 56.54
+    },
+    {
+      "id": "120249842709470753",
+      "name": "Frankie 1",
+      "month": "Month 2",
+      "test": "UGC",
+      "concept": "UGC",
+      "format": "Video",
+      "video": true,
+      "status": "Paused",
+      "title": "Built for women in their 20s and 30s—finally.",
+      "copy": "Built for women in their 20s and 30s—finally. Doctor-designed Body of Work, told by a real customer. Shop the women’s multivitamin.",
+      "poster": "media/library/posters/120249842709470753.jpg",
+      "media": {
+        "kind": "image",
+        "urls": [
+          "media/library/posters/120249842709470753.jpg"
+        ]
+      },
+      "note": "Still from the creator video. The video file itself is not in this library.",
+      "reach": 65,
+      "imps": 82,
+      "link": 0,
+      "spend": 3.74,
+      "plays": 77,
+      "p25": 3,
+      "p100": 1
+    },
+    {
+      "id": "120249842709710753",
+      "name": "Frankie 2",
+      "month": "Month 2",
+      "test": "UGC",
+      "concept": "UGC",
+      "format": "Video",
+      "video": true,
+      "status": "Paused",
+      "title": "Built for women in their 20s and 30s—finally.",
+      "copy": "Built for women in their 20s and 30s—finally. Doctor-designed Body of Work, told by a real customer. Shop the women’s multivitamin.",
+      "poster": "media/library/posters/120249842709710753.jpg",
+      "media": {
+        "kind": "image",
+        "urls": [
+          "media/library/posters/120249842709710753.jpg"
+        ]
+      },
+      "note": "Still from the creator video. The video file itself is not in this library.",
+      "reach": 46,
+      "imps": 53,
+      "link": 0,
+      "spend": 2.47,
+      "plays": 52,
+      "p25": 3,
+      "p100": 2
+    },
+    {
+      "id": "120249842710170753",
+      "name": "Heiley 1",
+      "month": "Month 2",
+      "test": "UGC",
+      "concept": "UGC",
+      "format": "Video",
+      "video": true,
+      "status": "Paused",
+      "title": "Built for women in their 20s and 30s—finally.",
+      "copy": "Built for women in their 20s and 30s—finally. Doctor-designed Body of Work, told by a real customer. Shop the women’s multivitamin.",
+      "poster": "media/library/posters/120249842710170753.jpg",
+      "media": {
+        "kind": "image",
+        "urls": [
+          "media/library/posters/120249842710170753.jpg"
+        ]
+      },
+      "note": "Still from the creator video. The video file itself is not in this library.",
+      "reach": 6,
+      "imps": 6,
+      "link": 1,
+      "spend": 0.15,
+      "plays": 6,
+      "p25": 1
+    },
+    {
+      "id": "120249842710720753",
+      "name": "Heiley 2",
+      "month": "Month 2",
+      "test": "UGC",
+      "concept": "UGC",
+      "format": "Video",
+      "video": true,
+      "status": "Paused",
+      "title": "Built for women in their 20s and 30s—finally.",
+      "copy": "Built for women in their 20s and 30s—finally. Doctor-designed Body of Work, told by a real customer. Shop the women’s multivitamin.",
+      "poster": "media/library/posters/120249842710720753.jpg",
+      "media": {
+        "kind": "image",
+        "urls": [
+          "media/library/posters/120249842710720753.jpg"
+        ]
+      },
+      "note": "Still from the creator video. The video file itself is not in this library.",
+      "reach": 290,
+      "imps": 317,
+      "link": 6,
+      "spend": 24.19,
+      "plays": 284,
+      "p25": 15,
+      "p100": 1
+    },
+    {
+      "id": "120249842711810753",
+      "name": "Keena",
+      "month": "Month 2",
+      "test": "UGC",
+      "concept": "UGC",
+      "format": "Video",
+      "video": true,
+      "status": "Paused",
+      "title": "Built for women in their 20s and 30s—finally.",
+      "copy": "Built for women in their 20s and 30s—finally. Doctor-designed Body of Work, told by a real customer. Shop the women’s multivitamin.",
+      "poster": "media/library/posters/120249842711810753.jpg",
+      "media": {
+        "kind": "image",
+        "urls": [
+          "media/library/posters/120249842711810753.jpg"
+        ]
+      },
+      "note": "Still from the creator video. The video file itself is not in this library.",
+      "reach": 70,
+      "imps": 84,
+      "link": 2,
+      "spend": 7.6,
+      "plays": 81,
+      "p25": 2
+    },
+    {
+      "id": "120250255463800753",
+      "name": "Whole Self 5.4",
+      "month": "Month 2",
+      "test": "Optimizer",
+      "concept": "Whole Self",
+      "format": "Carousel",
+      "video": false,
+      "status": "Live",
+      "title": "Shop Body of Work",
+      "copy": "Some things you inherit from your mom. Your multivitamin doesn't have to be one of them.\n\nBody of Work was designed specifically for women in their 20s and 30s, with 11 thoughtfully selected ingredients for the stage of life you're actually in.",
+      "poster": "media/library/posters/120250255463800753.jpg",
+      "media": {
+        "kind": "images",
+        "urls": [
+          "media/week-5.4-1.jpg",
+          "media/week-5.4-2.jpg",
+          "media/week-5.4-3.jpg"
+        ]
+      },
+      "note": "October optimizer test. A different line from the Month 1 Whole Self 5.4 carousel.",
+      "reach": 2909,
+      "imps": 4067,
+      "link": 27,
+      "spend": 186.05,
+      "atc": 4,
+      "ic": 5,
+      "purch": 2,
+      "value": 78.2
+    }
+  ]
+}
