@@ -385,16 +385,23 @@ h3 { font-size: 15px; margin: 0 0 8px; }
 .insight li { margin: 0 0 8px; font-size: 14.5px; line-height: 1.5; color: var(--ink); }
 .insight li:last-child { margin-bottom: 0; }
 .buy-list { display: flex; flex-direction: column; gap: 18px; margin: 14px 0 16px; }
-.buy-card { display: grid; grid-template-columns: 220px 1fr; gap: 16px; align-items: start; }
+.buy-card {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  column-gap: 16px;
+  align-items: start;
+}
 .buy-shots { display: flex; gap: 6px; }
 .buy-shots img {
-  width: 220px;
+  width: 148px;
+  max-width: 100%;
   height: auto;
+  flex: 0 0 auto;
   border-radius: 8px;
   display: block;
   background: #111;
 }
-.buy-shots.row img { width: 96px; }
+.buy-shots.row img { width: 108px; }
 .buy-card .name { font-weight: 600; font-size: 14px; margin: 0 0 4px; }
 .buy-card .copy { margin: 0 0 8px; font-size: 14.5px; line-height: 1.5; }
 .buy-card .stat { margin: 0; font-size: 13.5px; line-height: 1.45; color: var(--muted); }
@@ -776,6 +783,7 @@ table.plain tr { cursor: default; }
   .flow-card, .month-pane { min-height: 0; }
   .proof + .proof { border-left: 0; padding-left: 0; border-top: 1px solid var(--line); }
   .creative-card, .buy-card { grid-template-columns: 1fr; }
+  .buy-shots { flex-wrap: wrap; }
   .buy-shots img, .buy-shots.row img { width: 108px; }
   .creative-media iframe.preview-frame { width: 100%; max-width: 280px; }
 }
