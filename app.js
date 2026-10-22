@@ -2042,13 +2042,13 @@ function pageWeek() {
     ["Mon 19 Oct", 115.40, 0, null, null],
     ["Tue 20 Oct", 134.01, 0, null, null],
     ["Wed 21 Oct", 130.82, 0, null, null],
-    ["Thu 22 Oct", 31.52, 0, null, null],
+    ["Thu 22 Oct", 33.20, 1, null, 33.20],
   ];
   const campaigns = [
-    ["Whole Self optimizer", 323.36, 1, null],
-    ["Wave 4", 244.23, 0, null],
-    ["Wave 5", 199.58, 0, null],
-    ["UGC retargeting", 32.35, 0, null],
+    ["Whole Self optimizer", 324.05, 2, null],
+    ["Wave 4", 244.92, 0, null],
+    ["Wave 5", 199.64, 0, null],
+    ["UGC retargeting", 32.59, 0, null],
   ];
   const money = (n) => n == null ? "—" : usd(n);
   return `
@@ -2057,10 +2057,10 @@ function pageWeek() {
         <div class="caption" style="color:#9bb0aa">01 / Last 7 days</div>
         <h1>16 Oct – 22 Oct</h1>
         <ul>
-          <li>Meta spent ${usd(799.52)} and counted 1 purchase. Meta did not attach a dollar value to it. Across these 7 days that is ${usd(799.52)} of spend for the one purchase Meta counted.</li>
-          <li>Sunday was the heavy day: ${usd(161.54)}, and it did not purchase. Thursday is only this morning, ${usd(31.52)}.</li>
-          <li>The purchase is on Whole Self M2 5.3 Vitamins, inside the optimizer. That ad did not spend in these 7 days.</li>
-          <li>Whole Self M2 5.4, in the same campaign, spent ${usd(271.70)}. It added to cart once and reached checkout 5 times, and did not purchase.</li>
+          <li>Meta spent ${usd(801.20)} and counted 3 purchases. Meta did not attach a dollar value to them. Across these 7 days that is ${usd(267.07)} of spend for each purchase Meta counted.</li>
+          <li>Sunday was the heavy day: ${usd(161.54)}, and it did not purchase. Thursday is only this morning, ${usd(33.20)}.</li>
+          <li>One purchase is on Whole Self M2 5.3 Vitamins, inside the optimizer. That ad did not spend in these 7 days.</li>
+          <li>One purchase is a 1-day view on Whole Self M2 5.4. That ad spent ${usd(272.25)}. It added to cart once and reached checkout 5 times.</li>
           <li>Google Ads spent ${usd(200.52)}. Performance Max spent ${usd(126.14)} and purchased once, a Google Shopping App purchase worth ${usd(24.65)}. Shopping spent ${usd(74.38)} and did not purchase.</li>
         </ul>
       </div>
@@ -2070,14 +2070,14 @@ function pageWeek() {
       </div>
     </div>
     <div class="score-grid">
-      <div class="score"><div class="v">${usd(800, 0)}</div><div class="l">Meta spend</div><div class="h">${usd(200.52)} on Google</div></div>
-      <div class="score"><div class="v">1</div><div class="l">Meta purchases</div><div class="h">Meta did not attach a value</div></div>
-      <div class="score"><div class="v">${usd(800, 0)}</div><div class="l">Meta cost per purchase</div><div class="h">The purchase ad spent ${usd(0)}</div></div>
+      <div class="score"><div class="v">${usd(801, 0)}</div><div class="l">Meta spend</div><div class="h">${usd(200.52)} on Google</div></div>
+      <div class="score"><div class="v">3</div><div class="l">Meta purchases</div><div class="h">Meta did not attach a value</div></div>
+      <div class="score"><div class="v">${usd(267, 0)}</div><div class="l">Meta cost per purchase</div><div class="h">${usd(267.07)} each</div></div>
       <div class="score"><div class="v">${usd(190, 0)}</div><div class="l">Meta budget now</div><div class="h">Live ad sets, this morning</div></div>
     </div>
 
     <h2>Each day on Meta</h2>
-    <p class="caption">Purchase value is what Meta attached to the purchase. Friday is the only day with a purchase, and Meta did not attach a dollar value. Cost per purchase is that day’s spend divided by the purchases Meta counted. Thursday is through this morning, not a full day.</p>
+    <p class="caption">Purchase value is what Meta attached to the purchase. Friday and this morning are the days Meta placed a purchase. The account total is 3. Meta did not attach a dollar value. Thursday is through this morning, not a full day.</p>
     <div class="table-wrap">
       <table>
         <thead><tr>
@@ -2097,7 +2097,7 @@ function pageWeek() {
     </div>
 
     <h2>Where the Meta money went</h2>
-    <p class="caption">16 Oct – 22 Oct. Account spend is ${usd(799.52)}.</p>
+    <p class="caption">16 Oct – 22 Oct. Account spend is ${usd(801.20)}. Account purchases are 3.</p>
     <div class="table-wrap">
       <table>
         <thead><tr>
@@ -2116,8 +2116,8 @@ function pageWeek() {
     </div>
 
     <div class="insight wide">
-      <div class="k">The purchase</div>
-      <h3>Meta counted 1 purchase on Whole Self M2 5.3 Vitamins. That ad did not spend this week.</h3>
+      <div class="k">The purchases</div>
+      <h3>Meta counted 3 purchases. Two of them are on the Whole Self optimizer.</h3>
       <div class="buy-list">
         <article class="buy-card">
           <div class="buy-shots row">
@@ -2130,9 +2130,21 @@ function pageWeek() {
             <p class="stat">Meta counted 1 purchase. This ad spent ${usd(0)} in these 7 days, and Meta did not attach a dollar value. The picture on the ad reads “For the girls who don’t want to take 12 supplements every morning.”</p>
           </div>
         </article>
+        <article class="buy-card">
+          <div class="buy-shots row">
+            <img src="media/week-5.4-1.jpg" alt="Whole Self M2 5.4, card 1">
+            <img src="media/week-5.4-2.jpg" alt="Whole Self M2 5.4, card 2">
+            <img src="media/week-5.4-3.jpg" alt="Whole Self M2 5.4, card 3">
+          </div>
+          <div>
+            <div class="name">Whole Self M2 5.4, optimizer</div>
+            <p class="copy">Some things you inherit from your mom. Your multivitamin doesn't have to be one of them.</p>
+            <p class="stat">Meta counted 1 purchase on a 1-day view. This ad spent ${usd(272.25)}. One add to cart, five checkouts. Meta did not attach a dollar value.</p>
+          </div>
+        </article>
       </div>
-      <p>Whole Self M2 5.4 spent ${usd(271.70)} in the same campaign. One add to cart, five checkouts, and no purchase. Whole Self M1 5.2 spent ${usd(51.66)} and did not purchase.</p>
-      <p>Wave 4 spent ${usd(244.23)} and did not purchase. Wave 5 spent ${usd(199.58)} and did not purchase. UGC retargeting spent ${usd(32.35)} and did not purchase.</p>
+      <p>Whole Self M1 5.2 spent ${usd(51.80)} and did not purchase.</p>
+      <p>Wave 4 spent ${usd(244.92)} and did not purchase. Wave 5 spent ${usd(199.64)} and did not purchase. UGC retargeting spent ${usd(32.59)} and did not purchase.</p>
     </div>
 
     <h2>Google</h2>
@@ -2162,6 +2174,7 @@ function pageWeek() {
     <p class="caption">16 Oct – 22 Oct. Pulled the morning of 22 Oct. Thursday is not a full day. The date chips on the other pages do not change this one.</p>
   `;
 }
+
 
 let WAVES = null;
 let WAVE_PREVIEWS = {};
