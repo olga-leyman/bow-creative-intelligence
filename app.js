@@ -472,7 +472,7 @@ function renderMeta() {
       ? "Data source · Google Analytics, Body of Work · 1 Sep – 30 Sep · Meta cart and checkout from Ads Manager, same month"
       : "Data source · Google Analytics, Body of Work · 1 Oct – 8 Oct · The 8th is this morning · Meta cart and checkout from Ads Manager, same dates")
     : state.page === "week"
-    ? "Data source · Meta Ads and Google Ads, Body of Work · 1 Oct – 7 Oct · Google refreshed the morning of 8 Oct"
+    ? "Data source · Meta Ads and Google Ads, Body of Work · 16 Oct – 22 Oct · Pulled the morning of 22 Oct"
     : state.page === "google"
     ? "Data source · Google Ads, Body of Work · 1 Oct – 7 Oct · Pulled the morning of 8 Oct · Paid and organic orders also saw a Meta ad"
     : (state.page === "library" || state.page === "video")
@@ -2036,49 +2036,48 @@ function pageSiteOctober() {
 
 function pageWeek() {
   const days = [
-    ["Fri 9 Oct", 287.66, 0, null, null],
-    ["Sat 10 Oct", 332.17, 2, 78.20, 166.085],
-    ["Sun 11 Oct", 706.67, 1, 23, 706.67],
-    ["Mon 12 Oct", 358.84, 1, 34, 358.84],
-    ["Tue 13 Oct", 116.36, 1, 34, 116.36],
-    ["Wed 14 Oct", 111.51, 0, null, null],
-    ["Thu 15 Oct", 22.89, 0, null, null],
+    ["Fri 16 Oct", 121.05, 1, null, 121.05],
+    ["Sat 17 Oct", 105.18, 0, null, null],
+    ["Sun 18 Oct", 161.54, 0, null, null],
+    ["Mon 19 Oct", 115.40, 0, null, null],
+    ["Tue 20 Oct", 134.01, 0, null, null],
+    ["Wed 21 Oct", 130.82, 0, null, null],
+    ["Thu 22 Oct", 31.52, 0, null, null],
   ];
   const campaigns = [
-    ["Wave 5", 597.40, 1, 23],
-    ["Wave 4", 567.91, 1, 34],
-    ["Whole Self optimizer", 543.70, 2, 78.20],
-    ["Whole Self scale", 182.96, 1, 34],
-    ["UGC retargeting", 44.22, 0, null],
+    ["Whole Self optimizer", 323.36, 1, null],
+    ["Wave 4", 244.23, 0, null],
+    ["Wave 5", 199.58, 0, null],
+    ["UGC retargeting", 32.35, 0, null],
   ];
   const money = (n) => n == null ? "—" : usd(n);
   return `
     <div class="hero">
       <div>
         <div class="caption" style="color:#9bb0aa">01 / Last 7 days</div>
-        <h1>9 Oct – 15 Oct</h1>
+        <h1>16 Oct – 22 Oct</h1>
         <ul>
-          <li>Meta spent ${usd(1936.10)} and counted 5 purchases, worth ${usd(169.20)}. That is about ${usd(387.22)} a purchase.</li>
-          <li>Sunday was the heavy day: ${usd(706.67)} and 1 purchase, worth ${usd(23)}. Thursday is only this morning, ${usd(22.89)}, and has not purchased.</li>
-          <li>3 of the 5 purchases are Whole Self. One is the scale ad, Whole Self 5.3. Two are Whole Self M2 5.4, inside the optimizer that started 10 Oct.</li>
-          <li>The other two are Founder 2.5 in Wave 4, worth ${usd(34)}, and the Beauty 4.2 carousel in Wave 5, worth ${usd(23)}.</li>
-          <li>Google Ads spent ${usd(187.31)}. Performance Max spent ${usd(119.47)} and did not purchase. Shopping spent ${usd(67.84)} and did not purchase.</li>
+          <li>Meta spent ${usd(799.52)} and counted 1 purchase. Meta did not attach a dollar value to it. Across these 7 days that is ${usd(799.52)} of spend for the one purchase Meta counted.</li>
+          <li>Sunday was the heavy day: ${usd(161.54)}, and it did not purchase. Thursday is only this morning, ${usd(31.52)}.</li>
+          <li>The purchase is on Whole Self M2 5.3 Vitamins, inside the optimizer. That ad did not spend in these 7 days.</li>
+          <li>Whole Self M2 5.4, in the same campaign, spent ${usd(271.70)}. It added to cart once and reached checkout 5 times, and did not purchase.</li>
+          <li>Google Ads spent ${usd(200.52)}. Performance Max spent ${usd(126.14)} and purchased once, a Google Shopping App purchase worth ${usd(24.65)}. Shopping spent ${usd(74.38)} and did not purchase.</li>
         </ul>
       </div>
       <div class="when">Last 7 days
-        <b>9 Oct – 15 Oct</b>
+        <b>16 Oct – 22 Oct</b>
         Through this morning
       </div>
     </div>
     <div class="score-grid">
-      <div class="score"><div class="v">${usd(1936, 0)}</div><div class="l">Meta spend</div><div class="h">${usd(187.31)} on Google</div></div>
-      <div class="score"><div class="v">5</div><div class="l">Meta purchases</div><div class="h">${usd(169.20)} purchase value</div></div>
-      <div class="score"><div class="v">${usd(387, 0)}</div><div class="l">Meta cost per purchase</div><div class="h">3 of 5 are Whole Self</div></div>
-      <div class="score"><div class="v">${usd(200, 0)}</div><div class="l">Meta budget now</div><div class="h">Live ad sets, this morning</div></div>
+      <div class="score"><div class="v">${usd(800, 0)}</div><div class="l">Meta spend</div><div class="h">${usd(200.52)} on Google</div></div>
+      <div class="score"><div class="v">1</div><div class="l">Meta purchases</div><div class="h">Meta did not attach a value</div></div>
+      <div class="score"><div class="v">${usd(800, 0)}</div><div class="l">Meta cost per purchase</div><div class="h">The purchase ad spent ${usd(0)}</div></div>
+      <div class="score"><div class="v">${usd(190, 0)}</div><div class="l">Meta budget now</div><div class="h">Live ad sets, this morning</div></div>
     </div>
 
     <h2>Each day on Meta</h2>
-    <p class="caption">Purchase value is what Meta attached to the purchase. Friday, Wednesday, and Thursday had spend and no purchase. Thursday is through this morning, not a full day.</p>
+    <p class="caption">Purchase value is what Meta attached to the purchase. Friday is the only day with a purchase, and Meta did not attach a dollar value. Cost per purchase is that day’s spend divided by the purchases Meta counted. Thursday is through this morning, not a full day.</p>
     <div class="table-wrap">
       <table>
         <thead><tr>
@@ -2098,7 +2097,7 @@ function pageWeek() {
     </div>
 
     <h2>Where the Meta money went</h2>
-    <p class="caption">9 Oct – 15 Oct. Account spend is ${usd(1936.10)}.</p>
+    <p class="caption">16 Oct – 22 Oct. Account spend is ${usd(799.52)}.</p>
     <div class="table-wrap">
       <table>
         <thead><tr>
@@ -2117,52 +2116,23 @@ function pageWeek() {
     </div>
 
     <div class="insight wide">
-      <div class="k">The purchases</div>
-      <h3>Whole Self did three of the five purchases. Two other ads bought once each.</h3>
+      <div class="k">The purchase</div>
+      <h3>Meta counted 1 purchase on Whole Self M2 5.3 Vitamins. That ad did not spend this week.</h3>
       <div class="buy-list">
         <article class="buy-card">
-          <div class="buy-shots"><img src="media/week-5.3.jpg" alt="Whole Self 5.3"></div>
-          <div>
-            <div class="name">Whole Self 5.3, scale campaign</div>
-            <p class="copy">Most multivitamins are made for “everyone.” We created something more personalized — a daily multi made to fill the most common nutrient gaps for women in their 20s and 30s.</p>
-            <p class="stat">${usd(182.96)}, 1 purchase, ${usd(34)}.</p>
-          </div>
-        </article>
-        <article class="buy-card">
           <div class="buy-shots row">
-            <img src="media/week-5.4-1.jpg" alt="Whole Self M2 5.4, card 1">
-            <img src="media/week-5.4-2.jpg" alt="Whole Self M2 5.4, card 2">
-            <img src="media/week-5.4-3.jpg" alt="Whole Self M2 5.4, card 3">
+            <img src="media/week-vitamins-1.jpg" alt="Whole Self M2 5.3 Vitamins, portrait">
+            <img src="media/week-vitamins-2.jpg" alt="Whole Self M2 5.3 Vitamins, square">
           </div>
           <div>
-            <div class="name">Whole Self M2 5.4, optimizer</div>
-            <p class="copy">Some things you inherit from your mom. Your multivitamin doesn't have to be one of them.</p>
-            <p class="stat">${usd(177.76)}, 2 purchases, ${usd(78.20)}. About ${usd(88.88)} each. The rest of that campaign spent ${usd(365.94)} and did not purchase.</p>
-          </div>
-        </article>
-        <article class="buy-card">
-          <div class="buy-shots"><img src="media/week-founder-2.5.jpg" alt="Wave 4 Founder 2.5"></div>
-          <div>
-            <div class="name">Wave 4 Founder 2.5</div>
-            <p class="copy">More ingredients doesn't automatically mean a better multivitamin.</p>
-            <p class="stat">${usd(156.52)}, 1 purchase, ${usd(34)}. Wave 4 in total is ${usd(567.91)}. The other Wave 4 ads spent and did not purchase.</p>
-          </div>
-        </article>
-        <article class="buy-card">
-          <div class="buy-shots row">
-            <img src="media/week-beauty-4.2-1.jpg" alt="Wave 5 Beauty 4.2, card 1">
-            <img src="media/week-beauty-4.2-2.jpg" alt="Wave 5 Beauty 4.2, card 2">
-            <img src="media/week-beauty-4.2-3.jpg" alt="Wave 5 Beauty 4.2, card 3">
-          </div>
-          <div>
-            <div class="name">Wave 5 Beauty 4.2 carousel</div>
-            <p class="copy">For once, cute packaging isn't the only reason I take this multivitamin. Two vanilla-coated tablets. That's the whole routine. Subscribe from $20/mo.</p>
-            <p class="stat">${usd(66.40)}, 1 purchase, ${usd(23)}. Wave 5 in total is ${usd(597.40)}. The other Wave 5 ads spent and did not purchase.</p>
+            <div class="name">Whole Self M2 5.3 Vitamins, optimizer</div>
+            <p class="copy">Your wellness routine doesn't need to take over your morning. Body of Work brings 11 thoughtfully selected ingredients together in one daily multivitamin. Just two vanilla-coated tablets a day. Fewer bottles. No complicated routine.</p>
+            <p class="stat">Meta counted 1 purchase. This ad spent ${usd(0)} in these 7 days, and Meta did not attach a dollar value. The picture on the ad reads “For the girls who don’t want to take 12 supplements every morning.”</p>
           </div>
         </article>
       </div>
-      <p>UGC retargeting spent ${usd(44.22)} and did not purchase.</p>
-      <p>A bunch of the ads are paused. We kept the ones that are producing purchases, and the lower budget right now means those purchases come through more slowly.</p>
+      <p>Whole Self M2 5.4 spent ${usd(271.70)} in the same campaign. One add to cart, five checkouts, and no purchase. Whole Self M1 5.2 spent ${usd(51.66)} and did not purchase.</p>
+      <p>Wave 4 spent ${usd(244.23)} and did not purchase. Wave 5 spent ${usd(199.58)} and did not purchase. UGC retargeting spent ${usd(32.35)} and did not purchase.</p>
     </div>
 
     <h2>Google</h2>
@@ -2172,23 +2142,24 @@ function pageWeek() {
           <th>Campaign</th><th class="num">Spend</th><th class="num">Orders</th><th class="num">Order value</th>
         </tr></thead>
         <tbody>
-          <tr><td>Performance Max</td><td class="num">${usd(119.47)}</td><td class="num">—</td><td class="num">—</td></tr>
-          <tr><td>Shopping</td><td class="num">${usd(67.84)}</td><td class="num">—</td><td class="num">—</td></tr>
+          <tr><td>Performance Max</td><td class="num">${usd(126.14)}</td><td class="num">1</td><td class="num">${usd(24.65)}</td></tr>
+          <tr><td>Shopping</td><td class="num">${usd(74.38)}</td><td class="num">—</td><td class="num">—</td></tr>
         </tbody>
       </table>
     </div>
-    <p class="caption">Performance Max and Shopping both spent in this window and did not purchase. Thursday on Google is only this morning.</p>
+    <p class="caption">Performance Max purchased once. Google calls it a Google Shopping App purchase, worth ${usd(24.65)}. Shopping spent and did not purchase. Thursday on Google is only this morning.</p>
 
     <div class="insight">
       <div class="k">Where the budget sits this morning</div>
-      <h3>The live Meta ad sets add up to $200 a day.</h3>
+      <h3>The live Meta ad sets add up to $190 a day.</h3>
       <ul>
-        <li>Wave 5, ${usd(96, 0)}. The newer Whole Self optimizer, ${usd(53, 0)}, of which M2 5.4 is ${usd(45, 0)}. Wave 4 still on: Founder 2.5 ${usd(30, 0)}, UGC 1.5 ${usd(10, 0)}, Whole Self vitamins ${usd(6, 0)}. Website visitors, ${usd(5, 0)}.</li>
-        <li>The old Whole Self scale ad set is paused. Its budget is still set at ${usd(140, 0)}.</li>
-        <li>Google is unchanged. Performance Max is ${usd(20, 0)} a day. Shopping is ${usd(10, 0)}.</li>
+        <li>Wave 5, ${usd(96, 0)}. Whole Self 5.6 ${usd(8, 0)}, Whole Self 5.5 ${usd(12, 0)}, Whole Self 5.3 ${usd(15, 0)}, Whole Self 5.1 ${usd(8, 0)}, Beauty 4.2 ${usd(25, 0)}, Founder 2.5 Clean Label ${usd(12, 0)}, Founder 2.4 ${usd(8, 0)}, UGC 1.4 ${usd(8, 0)}.</li>
+        <li>The Whole Self optimizer, ${usd(53, 0)}. M2 5.4 is ${usd(45, 0)}. M1 5.2 is ${usd(8, 0)}.</li>
+        <li>Wave 4 still on: Founder 2.5 ${usd(30, 0)}, Whole Self vitamins ${usd(6, 0)}. Website visitors, ${usd(5, 0)}. UGC 1.5 is not in the live set this morning.</li>
+        <li>Google: Performance Max is ${usd(20, 0)} a day. Shopping is ${usd(10, 0)}.</li>
       </ul>
     </div>
-    <p class="caption">9 Oct – 15 Oct. Pulled the morning of 15 Oct. Thursday is not a full day. The date chips on the other pages do not change this one.</p>
+    <p class="caption">16 Oct – 22 Oct. Pulled the morning of 22 Oct. Thursday is not a full day. The date chips on the other pages do not change this one.</p>
   `;
 }
 
